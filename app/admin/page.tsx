@@ -124,103 +124,133 @@ export default function AdminDashboard() {
 
         {/* Dashboard Content */}
         <div className="flex-1 overflow-y-auto p-8">
-          <div className="max-w-6xl mx-auto space-y-8">
-            <div className="flex items-center justify-between">
-              <h2 className="text-3xl font-black text-navy-950 tracking-tight">Active Issues</h2>
-              <div className="flex items-center gap-3">
-                <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-bold text-gray-600 hover:bg-gray-50 shadow-sm">
-                  <Filter className="h-4 w-4" /> Filter
-                </button>
-                <button className="px-4 py-2 bg-navy-950 text-white rounded-lg text-sm font-bold hover:bg-navy-900 shadow-sm">
-                  Export Report
-                </button>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {[
-                { label: "Total Issues Today", value: "142", trend: "+12%", icon: AlertTriangle, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100" },
-                { label: "Resolved", value: "89", trend: "+5%", icon: CheckCircle, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
-                { label: "Pending Review", value: "45", trend: "-2%", icon: Clock, color: "text-saffron", bg: "bg-saffron/10", border: "border-saffron/20" },
-                { label: "Critical Escalations", value: "8", trend: "+1", icon: TrendingUp, color: "text-red-600", bg: "bg-red-50", border: "border-red-100" },
-              ].map((stat, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`p-3 rounded-xl border ${stat.bg} ${stat.border}`}>
-                      <stat.icon className={`h-6 w-6 ${stat.color}`} />
-                    </div>
-                    <span className="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded-md">{stat.trend}</span>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-black text-navy-950 mb-1">{stat.value}</p>
-                    <p className="text-sm font-bold text-gray-400 uppercase tracking-wide">{stat.label}</p>
-                  </div>
+          {activeTab === "issues" && (
+            <div className="max-w-6xl mx-auto space-y-8">
+              <div className="flex items-center justify-between">
+                <h2 className="text-3xl font-black text-navy-950 tracking-tight">Active Issues</h2>
+                <div className="flex items-center gap-3">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-bold text-gray-600 hover:bg-gray-50 shadow-sm">
+                    <Filter className="h-4 w-4" /> Filter
+                  </button>
+                  <button className="px-4 py-2 bg-navy-950 text-white rounded-lg text-sm font-bold hover:bg-navy-900 shadow-sm">
+                    Export Report
+                  </button>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Table */}
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-200">
-                      <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Tracking ID</th>
-                      <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Issue Type</th>
-                      <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Location</th>
-                      <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Priority</th>
-                      <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
-                      <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Time</th>
-                      <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {mockIssues.map((issue) => (
-                      <tr key={issue.id} className="hover:bg-gray-50/50 transition-colors">
-                        <td className="py-4 px-6 text-sm font-black text-navy-950">{issue.id}</td>
-                        <td className="py-4 px-6">
-                          <p className="text-sm font-bold text-navy-950">{issue.type}</p>
-                          <p className="text-xs font-medium text-gray-500">{issue.department}</p>
-                        </td>
-                        <td className="py-4 px-6">
-                          <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
-                            <MapPin className="h-4 w-4 text-gray-400" />
-                            {issue.location}
-                          </div>
-                        </td>
-                        <td className="py-4 px-6">
-                          <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-bold ${
-                            issue.priority === "Critical" ? "bg-red-50 text-red-700 border border-red-200" :
-                            issue.priority === "High" ? "bg-orange-50 text-orange-700 border border-orange-200" :
-                            issue.priority === "Medium" ? "bg-yellow-50 text-yellow-700 border border-yellow-200" :
-                            "bg-green-50 text-green-700 border border-green-200"
-                          }`}>
-                            {issue.priority}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6">
-                          <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-bold ${
-                            issue.status === "Resolved" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" :
-                            issue.status === "In Progress" ? "bg-blue-50 text-blue-700 border border-blue-200" :
-                            "bg-gray-100 text-gray-600 border border-gray-200"
-                          }`}>
-                            {issue.status}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-500">{issue.time}</td>
-                        <td className="py-4 px-6 text-right">
-                          <button className="text-gray-400 hover:text-navy-950 transition-colors p-1 rounded-md hover:bg-gray-100">
-                            <MoreVertical className="h-5 w-5" />
-                          </button>
-                        </td>
+              {/* Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {[
+                  { label: "Total Issues Today", value: "142", trend: "+12%", icon: AlertTriangle, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100" },
+                  { label: "Resolved", value: "89", trend: "+5%", icon: CheckCircle, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+                  { label: "Pending Review", value: "45", trend: "-2%", icon: Clock, color: "text-saffron", bg: "bg-saffron/10", border: "border-saffron/20" },
+                  { label: "Critical Escalations", value: "8", trend: "+1", icon: TrendingUp, color: "text-red-600", bg: "bg-red-50", border: "border-red-100" },
+                ].map((stat, i) => (
+                  <div key={i} className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className={`p-3 rounded-xl border ${stat.bg} ${stat.border}`}>
+                        <stat.icon className={`h-6 w-6 ${stat.color}`} />
+                      </div>
+                      <span className="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded-md">{stat.trend}</span>
+                    </div>
+                    <div>
+                      <p className="text-3xl font-black text-navy-950 mb-1">{stat.value}</p>
+                      <p className="text-sm font-bold text-gray-400 uppercase tracking-wide">{stat.label}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Table */}
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-gray-50 border-b border-gray-200">
+                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Tracking ID</th>
+                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Issue Type</th>
+                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Location</th>
+                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Priority</th>
+                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
+                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Time</th>
+                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {mockIssues.map((issue) => (
+                        <tr key={issue.id} className="hover:bg-gray-50/50 transition-colors">
+                          <td className="py-4 px-6 text-sm font-black text-navy-950">{issue.id}</td>
+                          <td className="py-4 px-6">
+                            <p className="text-sm font-bold text-navy-950">{issue.type}</p>
+                            <p className="text-xs font-medium text-gray-500">{issue.department}</p>
+                          </td>
+                          <td className="py-4 px-6">
+                            <div className="flex items-center gap-1.5 text-sm font-medium text-gray-600">
+                              <MapPin className="h-4 w-4 text-gray-400" />
+                              {issue.location}
+                            </div>
+                          </td>
+                          <td className="py-4 px-6">
+                            <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                              issue.priority === "Critical" ? "bg-red-50 text-red-700 border border-red-200" :
+                              issue.priority === "High" ? "bg-orange-50 text-orange-700 border border-orange-200" :
+                              issue.priority === "Medium" ? "bg-yellow-50 text-yellow-700 border border-yellow-200" :
+                              "bg-green-50 text-green-700 border border-green-200"
+                            }`}>
+                              {issue.priority}
+                            </span>
+                          </td>
+                          <td className="py-4 px-6">
+                            <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                              issue.status === "Resolved" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" :
+                              issue.status === "In Progress" ? "bg-blue-50 text-blue-700 border border-blue-200" :
+                              "bg-gray-100 text-gray-600 border border-gray-200"
+                            }`}>
+                              {issue.status}
+                            </span>
+                          </td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-500">{issue.time}</td>
+                          <td className="py-4 px-6 text-right">
+                            <button className="text-gray-400 hover:text-navy-950 transition-colors p-1 rounded-md hover:bg-gray-100">
+                              <MoreVertical className="h-5 w-5" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
+          )}
+          
+          {activeTab === "analytics" && (
+            <div className="max-w-6xl mx-auto space-y-8 fade-in">
+              <div className="flex items-center justify-between">
+                <h2 className="text-3xl font-black text-navy-950 tracking-tight">Analytics Overview</h2>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-10 flex flex-col items-center justify-center min-h-[400px]">
+                <BarChart3 className="h-16 w-16 text-gray-300 mb-4" />
+                <h3 className="text-xl font-bold text-navy-950">Analytics Dashboard</h3>
+                <p className="text-gray-500 mt-2 text-center max-w-md">Data visualization for city-wide civic issues is currently being aggregated. Check back later.</p>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "users" && (
+            <div className="max-w-6xl mx-auto space-y-8 fade-in">
+              <div className="flex items-center justify-between">
+                <h2 className="text-3xl font-black text-navy-950 tracking-tight">Citizen Management</h2>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="p-10 flex flex-col items-center justify-center min-h-[400px]">
+                  <Users className="h-16 w-16 text-gray-300 mb-4" />
+                  <h3 className="text-xl font-bold text-navy-950">Citizen Directory</h3>
+                  <p className="text-gray-500 mt-2 text-center max-w-md">Citizen KYC management and profiles are restricted in Demo Mode for privacy reasons.</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

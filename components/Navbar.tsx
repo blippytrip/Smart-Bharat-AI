@@ -67,6 +67,11 @@ export default function Navbar() {
                   setLang(l.code);
                   if (typeof window !== "undefined") {
                     window.localStorage.setItem("sb_lang", l.code);
+                    if (l.code !== "en") {
+                      alert(`Language updated to ${l.label}! \n\nNote: In Demo Mode, full UI translation is a Premium feature. However, the AI Companion and Scheme Finder will now respond in ${l.label}.`);
+                    } else {
+                      alert("Language restored to English.");
+                    }
                   }
                 }}
                 className={`px-3 py-1.5 transition-colors ${

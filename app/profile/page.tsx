@@ -18,6 +18,7 @@ import Link from "next/link";
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="min-h-screen px-4 py-10 sm:px-6 lg:px-8 bg-offwhite">
@@ -38,19 +39,31 @@ export default function ProfilePage() {
             
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
-                <h1 className="text-3xl font-black text-navy-950 tracking-tight">Amit Kumar</h1>
+                {isEditing ? (
+                  <input type="text" defaultValue="Amit Kumar" className="text-3xl font-black text-navy-950 tracking-tight bg-white border-b-2 border-saffron focus:outline-none w-auto max-w-[200px]" />
+                ) : (
+                  <h1 className="text-3xl font-black text-navy-950 tracking-tight">Amit Kumar</h1>
+                )}
                 <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wide flex items-center gap-1">
                   <BadgeCheck className="h-3.5 w-3.5" /> Verified Citizen
                 </span>
               </div>
               <p className="text-gray-500 font-medium flex items-center gap-2">
-                UID: XXXX-XXXX-4912 <span className="text-gray-300">•</span> Bengaluru, Karnataka
+                UID: XXXX-XXXX-4912 <span className="text-gray-300">•</span> {isEditing ? <input type="text" defaultValue="Bengaluru, Karnataka" className="bg-white border-b border-gray-300 focus:border-saffron focus:outline-none" /> : "Bengaluru, Karnataka"}
               </p>
             </div>
 
             <div className="flex gap-3 w-full md:w-auto">
-              <button className="flex-1 md:flex-none px-6 py-3 bg-gray-50 text-navy-950 font-bold text-sm rounded-xl border border-gray-200 hover:bg-gray-100 transition-colors">
-                Edit Profile
+              <button 
+                onClick={() => {
+                  if (isEditing) {
+                    alert("Profile updated successfully!");
+                  }
+                  setIsEditing(!isEditing);
+                }}
+                className="flex-1 md:flex-none px-6 py-3 bg-gray-50 text-navy-950 font-bold text-sm rounded-xl border border-gray-200 hover:bg-gray-100 transition-colors"
+              >
+                {isEditing ? "Save Profile" : "Edit Profile"}
               </button>
               <button className="flex-1 md:flex-none px-6 py-3 bg-navy-950 text-white font-bold text-sm rounded-xl shadow-lg shadow-navy-950/20 hover:bg-navy-900 transition-all hover:-translate-y-0.5">
                 Refresh DigiLocker
@@ -90,25 +103,41 @@ export default function ProfilePage() {
                 <div className="space-y-4">
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase tracking-wide mb-1">Age & Gender</p>
-                    <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100">32 Years • Male</p>
+                    {isEditing ? (
+                      <input type="text" defaultValue="32 Years • Male" className="w-full text-sm font-bold text-navy-950 bg-white p-2.5 rounded-lg border border-gray-300 focus:border-saffron focus:outline-none transition-all" />
+                    ) : (
+                      <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100">32 Years • Male</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase tracking-wide mb-1">Occupation</p>
-                    <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
-                      <Award className="h-4 w-4 text-saffron" /> Small Business Owner
-                    </p>
+                    {isEditing ? (
+                      <input type="text" defaultValue="Small Business Owner" className="w-full text-sm font-bold text-navy-950 bg-white p-2.5 rounded-lg border border-gray-300 focus:border-saffron focus:outline-none transition-all" />
+                    ) : (
+                      <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
+                        <Award className="h-4 w-4 text-saffron" /> Small Business Owner
+                      </p>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase tracking-wide mb-1">Annual Income</p>
-                    <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
-                      <Wallet className="h-4 w-4 text-emerald-500" /> ₹2.5 Lakhs (Verified)
-                    </p>
+                    {isEditing ? (
+                      <input type="text" defaultValue="₹2.5 Lakhs" className="w-full text-sm font-bold text-navy-950 bg-white p-2.5 rounded-lg border border-gray-300 focus:border-saffron focus:outline-none transition-all" />
+                    ) : (
+                      <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
+                        <Wallet className="h-4 w-4 text-emerald-500" /> ₹2.5 Lakhs (Verified)
+                      </p>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase tracking-wide mb-1">Residence</p>
-                    <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
-                      <Home className="h-4 w-4 text-blue-500" /> Urban • Rented
-                    </p>
+                    {isEditing ? (
+                      <input type="text" defaultValue="Urban • Rented" className="w-full text-sm font-bold text-navy-950 bg-white p-2.5 rounded-lg border border-gray-300 focus:border-saffron focus:outline-none transition-all" />
+                    ) : (
+                      <p className="text-sm font-bold text-navy-950 bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
+                        <Home className="h-4 w-4 text-blue-500" /> Urban • Rented
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
