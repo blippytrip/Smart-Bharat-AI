@@ -136,7 +136,88 @@ Ask me anything specific! For example: *"How do I apply for a passport?"*`,
 📞 **Helpline:** 1800-180-1961`,
 };
 
+function formatServiceResponse(service: any): string {
+  return `## ${service.icon} ${service.name} Guide
+
+${service.description}
+
+### 📋 Required Documents:
+${service.documents.map((doc: string) => `- ${doc}`).join("\n")}
+
+### 🚶 Application Process:
+${service.steps.map((step: string, i: number) => `${i + 1}. ${step}`).join("\n")}
+
+### ⏱️ Estimated Timeline:
+${service.timeline}
+
+### 💳 Government Fees:
+${Object.entries(service.fees).map(([type, fee]) => `- **${type.replace(/_/g, " ").toUpperCase()}**: ${fee}`).join("\n")}
+
+${service.officialLink ? `📎 **Official Portal**: [${service.officialLink}](${service.officialLink})` : ""}
+${service.helpline ? `📞 **Helpline**: ${service.helpline}` : ""}`;
+}
+
+function formatSchemeResponse(scheme: any): string {
+  return `## ${scheme.icon} ${scheme.name} Guide
+
+${scheme.description}
+
+- **Category**: ${scheme.category}
+- **Ministry/Department**: ${scheme.ministry}
+- **Benefit Amount**: ${scheme.amount}
+- **Application Deadline**: ${scheme.deadline}
+
+### 🔍 Eligibility Criteria:
+- **Age**: ${scheme.eligibility.minAge} to ${scheme.eligibility.maxAge} years
+- **Eligible Occupations**: ${scheme.eligibility.occupation.join(", ")}
+- **Annual Income Category**: ${scheme.eligibility.incomeCategories.map((ic: string) => ic.replace(/_/g, " ")).join(", ")}
+- **Eligible States**: ${scheme.eligibility.states.join(", ")}
+
+📎 **How to Apply**: [Official Portal](${scheme.applyLink})`;
+}
+
+function getLocalAnswer(query: string): string | null {
+  const q = query.toLowerCase();
+
+  // Search in servicesData
+  for (const [key, service] of Object.entries(servicesData)) {
+    const s = service as any;
+    if (
+      q.includes(s.name.toLowerCase()) ||
+      q.includes(key.replace(/_/g, " ")) ||
+      (key === "driving_license" && (q.includes("driving") || q.includes("license") || q.includes("dl"))) ||
+      (key === "voter_id" && (q.includes("voter") || q.includes("epic"))) ||
+      (key === "pan_card" && q.includes("pan")) ||
+      (key === "passport" && q.includes("passport"))
+    ) {
+      return formatServiceResponse(s);
+    }
+  }
+
+  // Search in schemesData
+  for (const scheme of schemesData as any[]) {
+    const name = scheme.name.toLowerCase();
+    const id = scheme.id.toLowerCase();
+    if (
+      q.includes(name) ||
+      q.includes(id.replace(/_/g, " ")) ||
+      (scheme.id === "pm_kisan" && q.includes("kisan")) ||
+      (scheme.id === "ayushman_bharat" && (q.includes("ayushman") || q.includes("pmjay"))) ||
+      (scheme.id === "ujjwala_yojana" && (q.includes("ujjwala") || q.includes("lpg"))) ||
+      (scheme.id === "mudra_loan" && (q.includes("mudra") || q.includes("loan"))) ||
+      (scheme.id === "sukanya_samridhi" && (q.includes("sukanya") || q.includes("samridhi")))
+    ) {
+      return formatSchemeResponse(scheme);
+    }
+  }
+
+  return null;
+}
+
 function getMockResponse(query: string): string {
+  const local = getLocalAnswer(query);
+  if (local) return local;
+
   const q = query.toLowerCase();
   if (q.includes("passport")) return mockResponses.passport;
   if (q.includes("driving") || q.includes("dl") || q.includes("license")) return mockResponses.driving;
@@ -145,8 +226,11 @@ function getMockResponse(query: string): string {
 }
 
 export async function POST(req: NextRequest) {
+  let message = "";
   try {
-    const { message, history, lang } = await req.json();
+    const body = await req.json();
+    message = body.message;
+    const { history, lang } = body;
 
     if (!message?.trim()) {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
@@ -203,7 +287,7 @@ ${context ? `KNOWLEDGE BASE CONTEXT:\n${context}` : ""}`;
   } catch (error) {
     console.error("Chat API error:", error);
     return NextResponse.json({
-      response: getMockResponse("default"),
+      response: getMockResponse(message),
       demoMode: true,
       error: cleanErrorMessage(error),
     });
