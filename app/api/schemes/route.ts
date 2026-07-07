@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getTextModel, DEMO_MODE } from "@/lib/gemini";
+import { getTextModel, isDemoMode } from "@/lib/gemini";
 import schemesData from "@/data/schemes.json";
 
 interface Scheme {
@@ -33,88 +33,91 @@ function filterSchemes(
     // Age check
     if (age < eligibility.minAge || age > eligibility.maxAge) return false;
 
-    // Occupation check
-    if (!eligibility.occupation.includes(occupation) && !eligibility.occupation.includes("other")) {
-      if (eligibility.occupation.length > 0 && !eligibility.occupation.includes("other")) {
-        // Allow if "other" is in occupation
-        const hasMatch = eligibility.occupation.includes(occupation);
-        if (!hasMatch) return false;
-      }
-    }
+    // Occupation check — pass if scheme accepts "other" or the specific occupation
+    const occupationMatch =
+      eligibility.occupation.includes(occupation) ||
+      eligibility.occupation.includes("other");
+    if (!occupationMatch) return false;
 
     // Income check
-    if (
-      !eligibility.incomeCategories.includes(incomeCategory) &&
-      !eligibility.incomeCategories.includes("all")
-    ) {
-      return false;
-    }
+    const incomeMatch =
+      eligibility.incomeCategories.includes(incomeCategory) ||
+      eligibility.incomeCategories.includes("all");
+    if (!incomeMatch) return false;
 
     // State check
-    if (
-      !eligibility.states.includes("all") &&
-      !eligibility.states.includes(state)
-    ) {
-      return false;
-    }
+    const stateMatch =
+      eligibility.states.includes("all") ||
+      eligibility.states.includes(state);
+    if (!stateMatch) return false;
 
     return true;
   });
 }
 
 export async function POST(req: NextRequest) {
+  let matchedSchemes: Scheme[] = [];
+
   try {
-    const { age, occupation, state, incomeCategory, lang } = await req.json();
+    const body = await req.json();
+    const { age, occupation, state, incomeCategory, lang } = body;
 
     if (!age || !occupation || !state || !incomeCategory) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
-    // Always filter schemes locally (fast, no AI needed for base filtering)
-    const matchedSchemes = filterSchemes(
-      parseInt(age),
-      occupation,
-      state,
-      incomeCategory
-    );
+    // Step 1: Always filter locally — fast, no AI needed
+    matchedSchemes = filterSchemes(parseInt(age), occupation, state, incomeCategory);
 
-    if (DEMO_MODE) {
+    const demoMode = isDemoMode();
+
+    if (demoMode) {
       return NextResponse.json({
         schemes: matchedSchemes,
-        aiSummary: `Based on your profile (${occupation}, age ${age}, from ${state}, income ${incomeCategory.replace(/_/g, " ")}), we found ${matchedSchemes.length} scheme(s) you may be eligible for. Click "Apply Now" on each to get started.`,
+        aiSummary:
+          matchedSchemes.length > 0
+            ? `Based on your profile (${occupation}, age ${age}, from ${state}), you are eligible for ${matchedSchemes.length} government scheme(s). Click "Apply Now" on each to get started.`
+            : `No schemes found in our database matching your exact profile. Try broadening your income category or check the National Scholarship Portal directly.`,
         demoMode: true,
       });
     }
 
-    const model = getTextModel();
-    if (!model) {
-      return NextResponse.json({
-        schemes: matchedSchemes,
-        aiSummary: `Found ${matchedSchemes.length} relevant schemes for your profile.`,
-        demoMode: true,
-      });
-    }
+    // Step 2: Try Gemini for a personalized summary (wrapped in its own try/catch
+    //         so a Gemini failure never blocks the local scheme results)
+    let aiSummary = `Found ${matchedSchemes.length} scheme(s) matching your profile.`;
 
-    const langInstruction =
-      lang === "hi"
-        ? "Respond in Hindi."
-        : lang === "te"
-        ? "Respond in Telugu."
-        : "Respond in English.";
+    try {
+      const model = getTextModel();
+      if (model) {
+        const langInstruction =
+          lang === "hi"
+            ? "Respond in Hindi."
+            : lang === "te"
+            ? "Respond in Telugu."
+            : "Respond in English.";
 
-    const schemeNames = matchedSchemes.map((s) => s.name).join(", ");
-    const prompt = `You are Smart Bharat AI. A citizen has this profile:
+        const schemeNames =
+          matchedSchemes.length > 0
+            ? matchedSchemes.map((s) => s.name).join(", ")
+            : "None found in local database";
+
+        const prompt = `You are Smart Bharat AI. A citizen has this profile:
 - Age: ${age}
 - Occupation: ${occupation}
 - State: ${state}
-- Annual Income Category: ${incomeCategory}
+- Annual Income Category: ${incomeCategory.replace(/_/g, " ")}
 
-The following government schemes match their profile: ${schemeNames || "None found in database"}
+Matching government schemes from our database: ${schemeNames}
 
-Write a brief, friendly 2-3 sentence summary of the best schemes for them and encourage them to apply. ${langInstruction}`;
+Write a brief, friendly 2-3 sentence summary encouraging them to apply for the most relevant ones. If no schemes match, suggest they check the National Scholarship Portal at scholarships.gov.in. ${langInstruction}`;
 
-    const result = await model.generateContent(prompt);
-    const aiSummary = result.response.text();
+        const result = await model.generateContent(prompt);
+        aiSummary = result.response.text();
+      }
+    } catch (geminiError) {
+      console.error("Gemini summary error (non-fatal):", geminiError);
+      // aiSummary already has a safe fallback value — continue with local results
+    }
 
     return NextResponse.json({
       schemes: matchedSchemes,
@@ -122,10 +125,14 @@ Write a brief, friendly 2-3 sentence summary of the best schemes for them and en
       demoMode: false,
     });
   } catch (error) {
-    console.error("Schemes API error:", error);
+    // Only top-level errors (e.g. bad JSON body) reach here
+    console.error("Schemes API top-level error:", error);
     return NextResponse.json({
-      schemes: [],
-      aiSummary: "Service temporarily unavailable. Please try again.",
+      schemes: matchedSchemes, // return whatever we filtered before the crash
+      aiSummary:
+        matchedSchemes.length > 0
+          ? `Found ${matchedSchemes.length} scheme(s) for your profile. AI summary unavailable.`
+          : "Service error. Please try again.",
       demoMode: true,
     });
   }

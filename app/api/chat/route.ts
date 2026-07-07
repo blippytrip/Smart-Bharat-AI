@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getTextModel, DEMO_MODE } from "@/lib/gemini";
+import { getTextModel, isDemoMode } from "@/lib/gemini";
 import servicesData from "@/data/services.json";
 import schemesData from "@/data/schemes.json";
 
@@ -152,7 +152,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
     }
 
-    if (DEMO_MODE) {
+    if (isDemoMode()) {
       return NextResponse.json({
         response: getMockResponse(message),
         demoMode: true,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getVisionModel, DEMO_MODE, generateTrackingId } from "@/lib/gemini";
+import { getVisionModel, isDemoMode, generateTrackingId } from "@/lib/gemini";
 import departmentsData from "@/data/departments.json";
 
 type DepartmentKey = keyof typeof departmentsData;
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     const description = (formData.get("description") as string) || "";
     const location = (formData.get("location") as string) || "";
 
-    if (DEMO_MODE) {
+    if (isDemoMode()) {
       // Simulate a delay for realism
       await new Promise((r) => setTimeout(r, 1200));
       return NextResponse.json(getMockAnalysis(description));
