@@ -130,12 +130,21 @@ All data is local JSON — no external database required:
 
 ## 🏆 Problem Statement Alignment
 
-This project directly solves the hackathon problem statement: **"Build a GenAI-powered civic platform that helps citizens access government services, report public issues, and receive personalized assistance."**
+This project directly solves the hackathon problem statement: **"Build a GenAI-powered web platform that helps citizens access government services, report public issues, and receive personalized assistance through an intelligent AI companion."**
 
-- **GenAI-powered civic platform**: Built natively on top of Google Gemini 2.0 Flash to power 100% of interactions.
-- **Access government services**: The Document Assistant feature generates checklists and prerequisites for major government services (Passport, DL, PAN, etc).
-- **Report public issues**: The Civic Issue Reporter uses Gemini Vision to extract details from user photos of civic problems and auto-routes them.
-- **Personalized assistance**: The AI Companion dynamically customizes answers in real-time based on the user's demographic inputs.
+**How we map to every requirement:**
+
+- ✅ **GenAI-powered web platform**: Built natively on top of Google Gemini 2.0 Flash to power 100% of interactions.
+- ✅ **Access government services**: The Scheme Finder & Document Assistant provide direct pathways to public services.
+- ✅ **Report public issues**: The Civic Issue Reporter uses Gemini Vision to extract details from user photos of civic problems and auto-routes them.
+- ✅ **Intelligent AI companion**: A fully persistent conversational interface that acts as a 24/7 civic assistant.
+- ✅ **Simplify complex government information**: Gemini translates bureaucratic jargon into simple, actionable bullet points.
+- ✅ **Answer citizen queries**: Instant responses to FAQs regarding passports, PAN cards, DLs, etc.
+- ✅ **Recommend relevant public services**: The profile dashboard auto-recommends schemes (e.g., scholarships, loans) based on the citizen's demographic data.
+- ✅ **Assist with document requirements**: The Document Assistant generates precise, personalized checklists so citizens never get rejected.
+- ✅ **Track complaints**: The Profile Dashboard features a "Recent Civic Reports" section with status tracking and complaint IDs.
+- ✅ **Provide multilingual support**: Full support for English, Hindi (HI), and Telugu (TE) across all AI interactions.
+- ✅ **Promote transparency, accessibility, and digital inclusion**: Voice-friendly UI, screen-reader semantic HTML, and localized language support ensures the platform is usable by all citizens, bridging the digital divide.
 
 ---
 
