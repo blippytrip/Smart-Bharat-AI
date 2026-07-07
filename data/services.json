@@ -1,0 +1,233 @@
+{
+  "passport": {
+    "id": "passport",
+    "name": "Passport",
+    "icon": "🛂",
+    "category": "Identity & Travel",
+    "description": "Indian Passport issued by the Ministry of External Affairs",
+    "documents": [
+      "Aadhaar Card (original + photocopy)",
+      "PAN Card",
+      "Birth Certificate or Class 10 Marksheet (DOB proof)",
+      "Address Proof (Aadhaar / Voter ID / Electricity bill)",
+      "2 recent passport-size photographs (white background)",
+      "Filled Passport Application Form (online)"
+    ],
+    "steps": [
+      "Register on Passport Seva Portal (passportindia.gov.in)",
+      "Fill Online Application Form (Form 1)",
+      "Pay application fee online",
+      "Book appointment at nearest Passport Seva Kendra (PSK)",
+      "Visit PSK with original documents on appointment date",
+      "Biometric data capture and police verification initiated",
+      "Passport dispatched via Speed Post"
+    ],
+    "timeline": "7–10 working days (Tatkaal), 30–45 days (Normal)",
+    "fees": {
+      "normal": "₹1,500 (36 pages), ₹2,000 (60 pages)",
+      "tatkaal": "₹2,000 (36 pages), ₹2,500 (60 pages)"
+    },
+    "officialLink": "https://www.passportindia.gov.in",
+    "helpline": "1800-258-1800"
+  },
+  "driving_license": {
+    "id": "driving_license",
+    "name": "Driving License",
+    "icon": "🚗",
+    "category": "Transport",
+    "description": "Driving License issued by Regional Transport Office (RTO)",
+    "documents": [
+      "Age Proof: Aadhaar / Birth Certificate / Class 10 Marksheet",
+      "Address Proof: Aadhaar / Voter ID / Electricity Bill",
+      "Learner's License (for Permanent DL)",
+      "Medical Certificate (Form 1A) from registered doctor",
+      "Passport-size photographs (2 nos.)",
+      "Filled Application Form 4 (online)"
+    ],
+    "steps": [
+      "Apply online at Parivahan Sewa portal (parivahan.gov.in)",
+      "Fill Form 2 for Learner's License",
+      "Pay fee and book slot for LL test",
+      "Pass online traffic knowledge test at RTO",
+      "After 30 days, apply for Permanent DL",
+      "Book driving test slot at RTO",
+      "Pass driving test — DL issued within 7 days"
+    ],
+    "timeline": "Learner's License: Same day | Permanent DL: 7–15 days after test",
+    "fees": {
+      "learners": "₹150–₹200",
+      "permanent": "₹350–₹500 (varies by state)"
+    },
+    "officialLink": "https://parivahan.gov.in/parivahan",
+    "helpline": "1800-120-1553"
+  },
+  "pan_card": {
+    "id": "pan_card",
+    "name": "PAN Card",
+    "icon": "💳",
+    "category": "Tax & Finance",
+    "description": "Permanent Account Number issued by Income Tax Department",
+    "documents": [
+      "Identity Proof: Aadhaar / Voter ID / Passport",
+      "Address Proof: Aadhaar / Bank Statement / Electricity Bill",
+      "Date of Birth Proof: Aadhaar / Birth Certificate",
+      "Passport-size photograph (1 nos.)",
+      "Filled Form 49A (for Indian citizens)"
+    ],
+    "steps": [
+      "Visit NSDL (onlineservices.nsdl.com) or UTIITSL (utiitsl.com)",
+      "Select 'Apply for new PAN' (Form 49A)",
+      "Fill in personal details and upload documents",
+      "Pay application fee online",
+      "Submit application and note acknowledgement number",
+      "PAN Card dispatched by post within 15 working days"
+    ],
+    "timeline": "15 working days (Physical) | Instant e-PAN via Aadhaar (few minutes)",
+    "fees": {
+      "physical": "₹107 (Indian address), ₹1,017 (foreign address)",
+      "ePAN": "₹66"
+    },
+    "officialLink": "https://www.incometaxindia.gov.in",
+    "helpline": "1800-180-1961"
+  },
+  "birth_certificate": {
+    "id": "birth_certificate",
+    "name": "Birth Certificate",
+    "icon": "👶",
+    "category": "Civil Records",
+    "description": "Birth Certificate issued by Municipal Corporation / Gram Panchayat",
+    "documents": [
+      "Hospital Discharge Summary / Delivery Certificate",
+      "Parents' Aadhaar Cards",
+      "Parents' Marriage Certificate",
+      "Filled Birth Registration Form (from local office)"
+    ],
+    "steps": [
+      "Report birth at hospital (most hospitals register within 21 days)",
+      "If not registered: Visit local Municipal office / Gram Panchayat",
+      "Submit birth registration form with supporting documents",
+      "Pay nominal fee",
+      "Certificate issued within 7 working days",
+      "Can also apply online at CRS portal (crsorgi.gov.in)"
+    ],
+    "timeline": "21 days (free), Late registration: 30–90 days (with late fee)",
+    "fees": {
+      "within21days": "Free",
+      "after21days": "₹10–₹100 (varies by state + late fee)"
+    },
+    "officialLink": "https://crsorgi.gov.in",
+    "helpline": "Contact local Municipal Corporation"
+  },
+  "income_certificate": {
+    "id": "income_certificate",
+    "name": "Income Certificate",
+    "icon": "📄",
+    "category": "Civil Records",
+    "description": "Certificate issued by Tehsildar / Revenue Department verifying annual income",
+    "documents": [
+      "Aadhaar Card",
+      "Ration Card",
+      "Bank Passbook (last 6 months)",
+      "Salary Slip (if employed)",
+      "Self-declaration of income",
+      "Passport-size photograph"
+    ],
+    "steps": [
+      "Visit nearest Common Service Centre (CSC) or Tehsildar office",
+      "Fill income certificate application form",
+      "Submit documents and pay fee",
+      "Verification conducted by Revenue Inspector",
+      "Certificate issued by Tehsildar within 15–30 days",
+      "Many states offer online application via e-District portals"
+    ],
+    "timeline": "15–30 working days",
+    "fees": {
+      "general": "₹10–₹50 (varies by state)"
+    },
+    "officialLink": "https://edistrict.gov.in",
+    "helpline": "Contact nearest Tehsildar office"
+  },
+  "voter_id": {
+    "id": "voter_id",
+    "name": "Voter ID Card (EPIC)",
+    "icon": "🗳️",
+    "category": "Identity",
+    "description": "Elector's Photo Identity Card issued by Election Commission of India",
+    "documents": [
+      "Age Proof (18+ years): Aadhaar / Birth Certificate",
+      "Address Proof: Aadhaar / Electricity Bill / Bank Passbook",
+      "Passport-size photograph (1 nos.)",
+      "Form 6 (New Voter Registration)"
+    ],
+    "steps": [
+      "Visit voterportal.eci.gov.in or Voter Helpline App",
+      "Click 'New Registration' and fill Form 6",
+      "Upload documents and photograph",
+      "Submit online — no physical visit required",
+      "ERO verifies details within 30 days",
+      "Voter ID dispatched or downloadable as e-EPIC"
+    ],
+    "timeline": "30–45 days",
+    "fees": {
+      "general": "Free"
+    },
+    "officialLink": "https://voterportal.eci.gov.in",
+    "helpline": "1950"
+  },
+  "ration_card": {
+    "id": "ration_card",
+    "name": "Ration Card",
+    "icon": "🌾",
+    "category": "Food & Welfare",
+    "description": "Ration Card issued by Food & Civil Supplies Department for subsidized food grains",
+    "documents": [
+      "Aadhaar Card (all family members)",
+      "Address Proof (electricity bill / rent agreement)",
+      "Income Certificate (for BPL/AAY category)",
+      "Passport-size photographs of all family members",
+      "Filled Application Form (from ration office)"
+    ],
+    "steps": [
+      "Visit nearest Food & Civil Supplies office or CSC",
+      "Fill ration card application form",
+      "Submit documents and pay nominal fee",
+      "Field verification by inspector",
+      "Ration card issued within 30 days",
+      "Online application available in most states via state food portal"
+    ],
+    "timeline": "30 days",
+    "fees": {
+      "general": "₹5–₹45 (varies by category and state)"
+    },
+    "officialLink": "https://nfsa.gov.in",
+    "helpline": "14445"
+  },
+  "caste_certificate": {
+    "id": "caste_certificate",
+    "name": "Caste Certificate (SC/ST/OBC)",
+    "icon": "📋",
+    "category": "Civil Records",
+    "description": "Certificate issued by Tehsildar verifying Scheduled Caste, Scheduled Tribe, or OBC status",
+    "documents": [
+      "Aadhaar Card",
+      "Ration Card (showing caste entry)",
+      "Father's/Grandfather's caste certificate (if available)",
+      "Address Proof",
+      "Self-declaration affidavit on stamp paper"
+    ],
+    "steps": [
+      "Visit CSC or Tehsildar office with documents",
+      "Fill caste certificate application form",
+      "Verification by Revenue Inspector",
+      "Approved by Tehsildar",
+      "Certificate issued within 15–30 days",
+      "Apply via state e-District portal where available"
+    ],
+    "timeline": "15–30 working days",
+    "fees": {
+      "general": "₹10–₹50 (varies by state)"
+    },
+    "officialLink": "https://edistrict.gov.in",
+    "helpline": "Contact nearest Tehsildar office"
+  }
+}

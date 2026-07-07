@@ -1,0 +1,272 @@
+[
+  {
+    "id": "pm_scholarship",
+    "name": "Prime Minister's Scholarship Scheme",
+    "category": "Scholarship",
+    "icon": "🎓",
+    "description": "Scholarship for wards of ex-servicemen and ex-coast guard personnel for professional degree courses.",
+    "eligibility": {
+      "occupation": ["student"],
+      "minAge": 18,
+      "maxAge": 25,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "₹2,500/month (boys), ₹3,000/month (girls)",
+    "deadline": "October 31 every year",
+    "applyLink": "https://ksb.gov.in",
+    "ministry": "Ministry of Defence"
+  },
+  {
+    "id": "nsp_central",
+    "name": "National Scholarship Portal (NSP) — Central Schemes",
+    "category": "Scholarship",
+    "icon": "🎓",
+    "description": "Umbrella portal for pre-matric, post-matric, and merit-cum-means scholarships for SC/ST/OBC/Minority students.",
+    "eligibility": {
+      "occupation": ["student"],
+      "minAge": 6,
+      "maxAge": 30,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "₹1,000–₹20,000/year depending on scheme and level",
+    "deadline": "October 31 every year",
+    "applyLink": "https://scholarships.gov.in",
+    "ministry": "Ministry of Education"
+  },
+  {
+    "id": "inspire_scholarship",
+    "name": "INSPIRE Scholarship (DST)",
+    "category": "Scholarship",
+    "icon": "🔬",
+    "description": "For students pursuing B.Sc/M.Sc in natural and basic sciences. Promotes research careers.",
+    "eligibility": {
+      "occupation": ["student"],
+      "minAge": 17,
+      "maxAge": 22,
+      "incomeCategories": ["below_1l", "1l_3l", "3l_6l"],
+      "states": ["all"]
+    },
+    "amount": "₹80,000/year + ₹20,000 summer research mentorship",
+    "deadline": "November 30 every year",
+    "applyLink": "https://online-inspire.gov.in",
+    "ministry": "Department of Science & Technology"
+  },
+  {
+    "id": "pm_kisan",
+    "name": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    "category": "Subsidy",
+    "icon": "🌾",
+    "description": "Direct income support of ₹6,000/year to eligible farmer families across India.",
+    "eligibility": {
+      "occupation": ["farmer"],
+      "minAge": 18,
+      "maxAge": 100,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "₹6,000/year (₹2,000 every 4 months via DBT)",
+    "deadline": "Ongoing — apply anytime",
+    "applyLink": "https://pmkisan.gov.in",
+    "ministry": "Ministry of Agriculture"
+  },
+  {
+    "id": "pmjdy",
+    "name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+    "category": "Welfare",
+    "icon": "🏦",
+    "description": "Financial inclusion scheme offering zero-balance bank accounts, RuPay debit card, and accident insurance.",
+    "eligibility": {
+      "occupation": ["student", "farmer", "self_employed", "unemployed", "homemaker", "other"],
+      "minAge": 10,
+      "maxAge": 100,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "Zero-balance account + ₹1 lakh accident insurance + ₹30,000 life cover",
+    "deadline": "Ongoing — apply anytime",
+    "applyLink": "https://pmjdy.gov.in",
+    "ministry": "Ministry of Finance"
+  },
+  {
+    "id": "ujjwala_yojana",
+    "name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+    "category": "Subsidy",
+    "icon": "🔥",
+    "description": "Free LPG gas connection to women from BPL households. Provides clean cooking fuel.",
+    "eligibility": {
+      "occupation": ["homemaker", "farmer", "self_employed", "other"],
+      "minAge": 18,
+      "maxAge": 100,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "Free LPG connection + ₹1,600 subsidy + first cylinder free",
+    "deadline": "Ongoing — apply anytime",
+    "applyLink": "https://pmuy.gov.in",
+    "ministry": "Ministry of Petroleum"
+  },
+  {
+    "id": "ayushman_bharat",
+    "name": "Ayushman Bharat — PM-JAY",
+    "category": "Health",
+    "icon": "🏥",
+    "description": "World's largest health insurance scheme. ₹5 lakh health coverage per family per year.",
+    "eligibility": {
+      "occupation": ["farmer", "self_employed", "unemployed", "homemaker", "student", "other"],
+      "minAge": 0,
+      "maxAge": 100,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "₹5 lakh/year health insurance (cashless at empanelled hospitals)",
+    "deadline": "Ongoing — enroll via PMJAY portal",
+    "applyLink": "https://pmjay.gov.in",
+    "ministry": "Ministry of Health & Family Welfare"
+  },
+  {
+    "id": "mudra_loan",
+    "name": "PM Mudra Yojana (PMMY)",
+    "category": "Loan",
+    "icon": "💼",
+    "description": "Collateral-free micro loans (₹50,000–₹10 lakh) for small businesses and self-employed individuals.",
+    "eligibility": {
+      "occupation": ["self_employed", "farmer", "other"],
+      "minAge": 18,
+      "maxAge": 65,
+      "incomeCategories": ["below_1l", "1l_3l", "3l_6l"],
+      "states": ["all"]
+    },
+    "amount": "Shishu: up to ₹50,000 | Kishore: ₹50K–₹5L | Tarun: ₹5L–₹10L",
+    "deadline": "Ongoing — apply via any scheduled bank / NBFC",
+    "applyLink": "https://www.mudra.org.in",
+    "ministry": "Ministry of Finance"
+  },
+  {
+    "id": "sukanya_samridhi",
+    "name": "Sukanya Samridhi Yojana (SSY)",
+    "category": "Savings",
+    "icon": "👧",
+    "description": "High-interest savings scheme for girl children (up to age 10). Tax-free returns for education and marriage.",
+    "eligibility": {
+      "occupation": ["student", "homemaker", "farmer", "self_employed", "other"],
+      "minAge": 0,
+      "maxAge": 10,
+      "incomeCategories": ["below_1l", "1l_3l", "3l_6l"],
+      "states": ["all"]
+    },
+    "amount": "8.2% interest per annum (tax-free), minimum ₹250/year",
+    "deadline": "Ongoing — open account at post office / bank",
+    "applyLink": "https://www.india.gov.in/sukanya-samridhi-yojna",
+    "ministry": "Ministry of Finance"
+  },
+  {
+    "id": "swachh_bharat_toilet",
+    "name": "Swachh Bharat Mission — Household Toilet",
+    "category": "Sanitation",
+    "icon": "🚿",
+    "description": "Incentive for constructing household toilets in rural areas. Cash incentive after construction.",
+    "eligibility": {
+      "occupation": ["farmer", "homemaker", "self_employed", "other"],
+      "minAge": 18,
+      "maxAge": 100,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "₹12,000 incentive post-construction",
+    "deadline": "Ongoing — apply via Gram Panchayat",
+    "applyLink": "https://sbm.gov.in",
+    "ministry": "Ministry of Jal Shakti"
+  },
+  {
+    "id": "post_matric_sc",
+    "name": "Post-Matric Scholarship for SC Students",
+    "category": "Scholarship",
+    "icon": "🎓",
+    "description": "Scholarship for SC students pursuing post-matriculation studies (Class 11 onwards).",
+    "eligibility": {
+      "occupation": ["student"],
+      "minAge": 15,
+      "maxAge": 35,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "₹1,000–₹16,000/year depending on course level",
+    "deadline": "October 31 every year",
+    "applyLink": "https://scholarships.gov.in",
+    "ministry": "Ministry of Social Justice & Empowerment"
+  },
+  {
+    "id": "pm_awas_gramin",
+    "name": "PM Awas Yojana — Gramin (PMAY-G)",
+    "category": "Housing",
+    "icon": "🏠",
+    "description": "Financial assistance to rural homeless / kutcha house dwellers to build pucca houses.",
+    "eligibility": {
+      "occupation": ["farmer", "homemaker", "self_employed", "unemployed", "other"],
+      "minAge": 18,
+      "maxAge": 100,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["all"]
+    },
+    "amount": "₹1.20 lakh (plain areas) / ₹1.30 lakh (hilly/difficult areas)",
+    "deadline": "Ongoing — apply via Gram Panchayat",
+    "applyLink": "https://pmayg.nic.in",
+    "ministry": "Ministry of Rural Development"
+  },
+  {
+    "id": "startup_india_seed",
+    "name": "Startup India Seed Fund Scheme",
+    "category": "Entrepreneurship",
+    "icon": "🚀",
+    "description": "Seed funding for early-stage startups for proof of concept, prototype, and market entry.",
+    "eligibility": {
+      "occupation": ["self_employed"],
+      "minAge": 21,
+      "maxAge": 45,
+      "incomeCategories": ["below_1l", "1l_3l", "3l_6l", "above_6l"],
+      "states": ["all"]
+    },
+    "amount": "Up to ₹20 lakh as grants, up to ₹50 lakh as debt/convertible debentures",
+    "deadline": "Ongoing — apply via DPIIT recognized incubators",
+    "applyLink": "https://www.startupindia.gov.in",
+    "ministry": "DPIIT, Ministry of Commerce"
+  },
+  {
+    "id": "national_apprenticeship",
+    "name": "National Apprenticeship Promotion Scheme (NAPS)",
+    "category": "Skill Development",
+    "icon": "🔧",
+    "description": "Stipend support for apprentices undergoing skill training with industry partners.",
+    "eligibility": {
+      "occupation": ["student", "unemployed"],
+      "minAge": 14,
+      "maxAge": 35,
+      "incomeCategories": ["below_1l", "1l_3l", "3l_6l"],
+      "states": ["all"]
+    },
+    "amount": "25% of stipend reimbursed to employer (₹500–₹1,500/month benefit to trainee)",
+    "deadline": "Ongoing",
+    "applyLink": "https://apprenticeshipindia.gov.in",
+    "ministry": "Ministry of Skill Development"
+  },
+  {
+    "id": "ladli_laxmi_mp",
+    "name": "Ladli Laxmi Yojana (Madhya Pradesh)",
+    "category": "Girl Child",
+    "icon": "👩",
+    "description": "Financial benefits for girl children born in MP families to improve girl child status.",
+    "eligibility": {
+      "occupation": ["student", "homemaker"],
+      "minAge": 0,
+      "maxAge": 21,
+      "incomeCategories": ["below_1l", "1l_3l"],
+      "states": ["Madhya Pradesh"]
+    },
+    "amount": "₹1.18 lakh over 21 years in installments",
+    "deadline": "Apply within 1 year of birth",
+    "applyLink": "https://ladlilaxmi.mp.gov.in",
+    "ministry": "Government of Madhya Pradesh"
+  }
+]

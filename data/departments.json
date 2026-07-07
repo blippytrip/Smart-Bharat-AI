@@ -1,0 +1,72 @@
+{
+  "pothole": {
+    "issueType": "Pothole / Road Damage",
+    "department": "Municipal Roads & Infrastructure Department",
+    "priority": "High",
+    "escalationDept": "Public Works Department (PWD)",
+    "keywords": ["pothole", "road", "damaged road", "broken road", "crater", "pit"]
+  },
+  "garbage": {
+    "issueType": "Garbage / Waste Dumping",
+    "department": "Municipal Solid Waste Management Department",
+    "priority": "High",
+    "escalationDept": "Urban Local Body (ULB) Commissioner",
+    "keywords": ["garbage", "waste", "trash", "dump", "litter", "solid waste", "rubbish"]
+  },
+  "streetlight": {
+    "issueType": "Broken / Non-functional Street Light",
+    "department": "Municipal Electricity Department",
+    "priority": "Medium",
+    "escalationDept": "State Electricity Board",
+    "keywords": ["streetlight", "street light", "lamp", "light", "dark road", "broken light"]
+  },
+  "water_leakage": {
+    "issueType": "Water Pipeline Leakage",
+    "department": "Municipal Water Supply & Sewerage Board",
+    "priority": "High",
+    "escalationDept": "State Water Board",
+    "keywords": ["water leak", "pipe burst", "water pipeline", "leaking water", "water wastage"]
+  },
+  "open_drain": {
+    "issueType": "Open / Blocked Drain",
+    "department": "Municipal Drainage Department",
+    "priority": "Medium",
+    "escalationDept": "Urban Local Body (ULB)",
+    "keywords": ["drain", "drainage", "sewer", "open drain", "blocked drain", "waterlogging"]
+  },
+  "encroachment": {
+    "issueType": "Encroachment on Public Land",
+    "department": "Municipal Revenue & Encroachment Department",
+    "priority": "Medium",
+    "escalationDept": "District Collector Office",
+    "keywords": ["encroachment", "illegal construction", "public land", "footpath blocked"]
+  },
+  "tree_fallen": {
+    "issueType": "Fallen Tree / Dangerous Tree",
+    "department": "Municipal Horticulture Department",
+    "priority": "High",
+    "escalationDept": "Fire Department (if emergency)",
+    "keywords": ["tree fallen", "fallen tree", "dangerous tree", "tree blocking road"]
+  },
+  "noise_pollution": {
+    "issueType": "Noise Pollution",
+    "department": "Pollution Control Board / Municipal Department",
+    "priority": "Low",
+    "escalationDept": "State Pollution Control Board",
+    "keywords": ["noise", "loud music", "noise pollution", "construction noise", "loudspeaker"]
+  },
+  "stray_animals": {
+    "issueType": "Stray Animals",
+    "department": "Municipal Animal Control Department",
+    "priority": "Medium",
+    "escalationDept": "State Animal Welfare Board",
+    "keywords": ["stray dog", "stray animals", "stray cattle", "cow on road"]
+  },
+  "flood": {
+    "issueType": "Flooding / Waterlogging",
+    "department": "Municipal Flood Control Department",
+    "priority": "Critical",
+    "escalationDept": "State Disaster Management Authority",
+    "keywords": ["flood", "waterlogging", "submerged road", "flooding", "rain water"]
+  }
+}
