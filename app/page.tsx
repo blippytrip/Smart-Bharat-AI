@@ -6,295 +6,270 @@ import {
   Star,
   ArrowRight,
   Shield,
-  Globe,
   Zap,
   ChevronRight,
-  Users,
   CheckCircle,
+  FileSearch,
+  Activity,
+  Globe
 } from "lucide-react";
 
 const features = [
   {
     icon: MessageSquare,
     title: "AI Civic Companion",
-    description:
-      "Ask any question about government services, schemes, or civic processes. Get instant, accurate answers in your language.",
+    description: "Ask any question about government services or civic processes. Get instant, accurate answers in your local language without navigating endless portals.",
     href: "/companion",
-    color: "from-blue-500/20 to-blue-600/10",
-    border: "border-blue-500/20",
-    iconColor: "text-blue-400",
+    tag: "Intelligence",
   },
   {
     icon: FileText,
     title: "Document Assistant",
-    description:
-      "Get personalized checklists for Passport, Driving License, PAN Card, and more. Never miss a document again.",
+    description: "Get personalized checklists for Passport, Driving License, and PAN Card. Upload documents securely for instant AI verification.",
     href: "/document-assistant",
-    color: "from-green-500/20 to-green-600/10",
-    border: "border-green-500/20",
-    iconColor: "text-green-400",
+    tag: "Verification",
   },
   {
     icon: Camera,
     title: "Civic Issue Reporter",
-    description:
-      "Upload a photo of a pothole, broken streetlight, or garbage dump. AI categorizes it and generates an official complaint.",
+    description: "Upload a photo of a pothole or broken streetlight. Our AI instantly categorizes it, extracts location data, and generates official municipal complaints.",
     href: "/issue-reporter",
-    color: "from-saffron/20 to-orange-600/10",
-    border: "border-saffron/20",
-    iconColor: "text-saffron",
-    featured: true,
+    tag: "Action",
   },
   {
     icon: Star,
     title: "Scheme Finder",
-    description:
-      "Enter your profile and discover government schemes, scholarships, and subsidies you qualify for.",
+    description: "Enter your demographic profile to instantly discover government schemes, scholarships, and subsidies tailored specifically for you.",
     href: "/scheme-finder",
-    color: "from-purple-500/20 to-purple-600/10",
-    border: "border-purple-500/20",
-    iconColor: "text-purple-400",
-  },
-];
-
-const stats = [
-  { value: "500+", label: "Government Services Covered" },
-  { value: "30+", label: "Schemes in Database" },
-  { value: "3", label: "Languages Supported" },
-  { value: "10+", label: "Issue Types Handled" },
-];
-
-const howItWorks = [
-  {
-    step: "01",
-    title: "Describe Your Need",
-    description: "Tell the AI what you need — passport, driving license, report a pothole, find scholarships.",
-  },
-  {
-    step: "02",
-    title: "AI Understands & Acts",
-    description: "Gemini AI analyzes your request, retrieves relevant government data, and generates an action plan.",
-  },
-  {
-    step: "03",
-    title: "Get Actionable Output",
-    description: "Receive checklists, complaint letters, tracking IDs, or scheme lists — ready to use immediately.",
+    tag: "Discovery",
   },
 ];
 
 export default function HomePage() {
   return (
-    <div className="hero-bg">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden px-4 pt-20 pb-24 sm:px-6 lg:px-8">
-        {/* Background decorations */}
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-saffron/8 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 h-48 w-48 rounded-full bg-blue-500/8 blur-3xl" />
-        </div>
+    <div className="bg-offwhite text-nearblack overflow-hidden selection:bg-saffron selection:text-white">
+      {/* --- HERO SECTION --- */}
+      <section className="relative px-4 pt-24 pb-32 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
+        {/* Subtle mesh background element */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-saffron/10 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="relative mx-auto max-w-5xl text-center">
-          {/* Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-saffron/25 bg-saffron/10 px-4 py-1.5 text-sm text-saffron fade-in-1">
-            <Zap className="h-3.5 w-3.5" />
-            <span>Powered by Google Gemini AI &nbsp;🇮🇳</span>
+        <div className="relative z-10 fade-in-1">
+          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-semibold text-navy-950 shadow-sm mb-8">
+            <Zap className="h-4 w-4 text-saffron fill-saffron" />
+            <span>Powered by Google Gemini AI</span>
+            <span className="text-gray-300 mx-1">|</span>
+            <span className="text-gray-500">Built for 🇮🇳</span>
           </div>
 
-          {/* Headline */}
-          <h1 className="fade-in-2 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl">
-            Your AI Civic
-            <br />
-            <span className="gradient-text">Action Agent</span>
+          <h1 className="text-5xl font-black tracking-tight text-navy-950 sm:text-7xl mb-6 max-w-4xl mx-auto leading-[1.1]">
+            Your AI Civic Companion <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-saffron to-saffron-light">for Modern India</span>
           </h1>
 
-          <p className="fade-in-3 mx-auto mt-6 max-w-2xl text-lg text-gray-400">
-            Smart Bharat AI transforms complex government processes into simple, actionable workflows.
-            Apply for services, report issues, find schemes — all in one place, in your language.
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl text-gray-600 mb-10 font-medium">
+            Access government services, resolve civic issues, and navigate public systems through intelligent, multilingual assistance.
           </p>
 
-          {/* CTAs */}
-          <div className="fade-in-4 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/issue-reporter"
-              id="cta-issue-reporter"
-              className="group flex items-center gap-2 rounded-xl bg-saffron px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-saffron/25 transition-all hover:bg-saffron-light hover:shadow-saffron/40 hover:-translate-y-0.5"
+              className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-navy-950 px-8 py-4 text-base font-bold text-white shadow-xl shadow-navy-950/20 transition-all hover:bg-navy-900 hover:-translate-y-1"
             >
-              <Camera className="h-5 w-5" />
-              Report a Civic Issue
+              <Camera className="h-5 w-5 text-saffron" />
+              Report Civic Issue
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/companion"
-              id="cta-companion"
-              className="flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10 hover:border-white/25 hover:-translate-y-0.5"
+              className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white border border-gray-200 px-8 py-4 text-base font-bold text-navy-950 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 hover:-translate-y-1"
             >
-              <MessageSquare className="h-5 w-5" />
+              <MessageSquare className="h-5 w-5 text-gray-400 group-hover:text-navy-950 transition-colors" />
               Ask AI Companion
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* Stats */}
-      <section className="border-y border-white/8 bg-navy-900/50 px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl grid grid-cols-2 gap-6 sm:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl font-bold gradient-text">{stat.value}</div>
-              <div className="mt-1 text-sm text-gray-500">{stat.label}</div>
+        {/* Hero Dashboard Preview (Mockup) */}
+        <div className="relative mt-20 w-full max-w-5xl fade-in-3">
+          <div className="absolute inset-0 bg-gradient-to-t from-offwhite via-transparent to-transparent z-10 rounded-2xl" />
+          <div className="rounded-2xl border border-gray-200 bg-white/50 backdrop-blur-sm p-2 shadow-2xl shadow-navy-950/5">
+            <div className="rounded-xl overflow-hidden border border-gray-100 bg-white shadow-sm flex flex-col md:flex-row">
+              {/* Sidebar Mock */}
+              <div className="w-full md:w-64 border-r border-gray-100 bg-gray-50/50 p-6 hidden md:flex flex-col gap-4">
+                <div className="h-8 w-24 bg-gray-200 rounded-md mb-4" />
+                <div className="h-4 w-full bg-gray-200 rounded-sm" />
+                <div className="h-4 w-3/4 bg-gray-200 rounded-sm" />
+                <div className="h-4 w-5/6 bg-gray-200 rounded-sm" />
+                <div className="mt-8 h-32 w-full border border-gray-200 rounded-lg bg-white shadow-sm p-4 flex flex-col justify-between">
+                  <div className="h-3 w-16 bg-saffron/30 rounded-sm" />
+                  <div className="h-8 w-8 bg-saffron/10 rounded-full flex items-center justify-center"><Activity className="w-4 h-4 text-saffron" /></div>
+                </div>
+              </div>
+              {/* Main Content Mock */}
+              <div className="flex-1 p-6 sm:p-10">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <div className="h-6 w-48 bg-navy-950 rounded-md mb-2" />
+                    <div className="h-4 w-64 bg-gray-200 rounded-sm" />
+                  </div>
+                  <div className="hidden sm:flex h-10 w-10 bg-gray-100 rounded-full" />
+                </div>
+                {/* Bento layout inside the mockup */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="h-48 border border-gray-100 rounded-xl bg-gray-50 p-6">
+                     <div className="h-10 w-10 rounded-lg bg-blue-100 mb-4 flex items-center justify-center"><FileSearch className="w-5 h-5 text-blue-600" /></div>
+                     <div className="h-4 w-1/2 bg-gray-300 rounded-sm mb-2" />
+                     <div className="h-3 w-full bg-gray-200 rounded-sm" />
+                  </div>
+                  <div className="h-48 border border-gray-100 rounded-xl bg-gray-50 p-6">
+                     <div className="h-10 w-10 rounded-lg bg-green-100 mb-4 flex items-center justify-center"><Shield className="w-5 h-5 text-green-600" /></div>
+                     <div className="h-4 w-1/2 bg-gray-300 rounded-sm mb-2" />
+                     <div className="h-3 w-full bg-gray-200 rounded-sm" />
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="px-4 py-20 sm:px-6 lg:px-8" id="features">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">
-              Everything a Citizen Needs
-            </h2>
-            <p className="mt-4 text-gray-400">
-              Four powerful modules designed for real government workflows
-            </p>
+      {/* --- STATS / TRUST SECTION --- */}
+      <section className="border-y border-gray-200 bg-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100">
+            <div className="text-center px-4">
+              <div className="text-3xl font-black text-navy-950">500+</div>
+              <div className="mt-1 text-sm font-semibold text-gray-500 uppercase tracking-wide">Services Indexed</div>
+            </div>
+            <div className="text-center px-4">
+              <div className="text-3xl font-black text-navy-950">40+</div>
+              <div className="mt-1 text-sm font-semibold text-gray-500 uppercase tracking-wide">Civic Schemes</div>
+            </div>
+            <div className="text-center px-4">
+              <div className="text-3xl font-black text-navy-950">99%</div>
+              <div className="mt-1 text-sm font-semibold text-gray-500 uppercase tracking-wide">AI Accuracy</div>
+            </div>
+            <div className="text-center px-4">
+              <div className="text-3xl font-black text-navy-950 flex items-center justify-center gap-1">
+                <Globe className="w-6 h-6 text-saffron" /> 3
+              </div>
+              <div className="mt-1 text-sm font-semibold text-gray-500 uppercase tracking-wide">Languages</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- FEATURE SHOWCASE (ALTERNATING) --- */}
+      <section className="py-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
+          
+          {/* Feature 1: Issue Reporter */}
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex items-center gap-2 text-saffron font-bold text-sm tracking-widest uppercase">
+                <Camera className="w-4 h-4" /> Issue Reporter
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-black text-navy-950 leading-tight">
+                Report civic issues with a single tap.
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Spot a pothole or a broken streetlight? Just upload a photo. Our vision AI instantly analyzes the image, categorizes the problem, and drafts an official municipal complaint ready for submission.
+              </p>
+              <ul className="space-y-3 pt-4">
+                {['Automatic category detection via AI Vision', 'Location metadata extraction', 'Ready-to-email official complaint drafts'].map(item => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                    <span className="text-gray-700 font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex-1 relative">
+              <div className="absolute inset-0 bg-saffron/10 blur-3xl rounded-full" />
+              <div className="relative border border-gray-200 bg-white rounded-2xl shadow-xl overflow-hidden flex items-center justify-center aspect-square md:aspect-video lg:aspect-square">
+                 <div className="w-3/4 space-y-4">
+                    <div className="w-full h-40 bg-gray-100 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center flex-col gap-2">
+                       <Camera className="w-8 h-8 text-gray-400" />
+                       <span className="text-sm font-bold text-gray-400">Upload Photo</span>
+                    </div>
+                    <div className="h-16 w-full bg-saffron/10 rounded-xl border border-saffron/20 flex items-center px-4 gap-4">
+                       <div className="h-8 w-8 bg-saffron text-white rounded-full flex items-center justify-center"><Zap className="w-4 h-4" /></div>
+                       <div>
+                         <div className="h-3 w-24 bg-saffron/40 rounded-sm mb-2" />
+                         <div className="h-2 w-32 bg-saffron/20 rounded-sm" />
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
-            {features.map((feature) => {
+          {/* Feature 2: Document Assistant */}
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm tracking-widest uppercase">
+                <FileText className="w-4 h-4" /> Document Assistant
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-black text-navy-950 leading-tight">
+                Never get rejected for missing documents.
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Applying for a passport or PAN card? Upload your documents securely. Our AI acts as a digital notary, verifying if you have the correct paperwork before you even step foot in a government office.
+              </p>
+              <Link href="/document-assistant" className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-700 transition-colors pt-2">
+                Try Document Assistant <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="flex-1 relative w-full">
+              <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full" />
+              <div className="relative border border-gray-200 bg-white rounded-2xl shadow-xl overflow-hidden flex items-center justify-center p-8 aspect-square md:aspect-video lg:aspect-square">
+                 <div className="w-full space-y-3">
+                    {[1, 2, 3].map(i => (
+                      <div key={i} className="h-14 w-full bg-white border border-gray-100 rounded-lg shadow-sm flex items-center px-4 justify-between">
+                         <div className="flex items-center gap-3">
+                            <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-400">{i}</div>
+                            <div className="h-3 w-32 bg-gray-200 rounded-sm" />
+                         </div>
+                         {i === 1 ? <CheckCircle className="w-5 h-5 text-green-500" /> : <div className="w-4 h-4 border-2 border-gray-200 rounded-full" />}
+                      </div>
+                    ))}
+                 </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- BENTO GRID SHOWCASE --- */}
+      <section className="py-24 bg-navy-950 text-white rounded-t-[3rem]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">A complete civic ecosystem.</h2>
+            <p className="text-lg text-gray-400">Everything you need to navigate the bureaucracy, housed in a single, intelligent application.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {features.map((feature, idx) => {
               const Icon = feature.icon;
               return (
                 <Link
-                  key={feature.href}
                   href={feature.href}
-                  className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-br p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${feature.color} ${feature.border} ${
-                    feature.featured ? "ring-1 ring-saffron/30" : ""
-                  }`}
+                  key={idx}
+                  className={`group relative border border-white/10 bg-white/5 rounded-3xl p-8 hover:bg-white/10 transition-colors ${idx === 0 ? 'md:col-span-2' : ''}`}
                 >
-                  {feature.featured && (
-                    <span className="absolute top-3 right-3 rounded-full bg-saffron px-2 py-0.5 text-xs font-semibold text-white">
-                      ⭐ Hero Feature
-                    </span>
-                  )}
-                  <div
-                    className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/8 ${feature.iconColor}`}
-                  >
-                    <Icon className="h-6 w-6" />
+                  <div className="flex justify-between items-start mb-16">
+                     <div className="h-12 w-12 rounded-xl bg-white/10 flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-white" />
+                     </div>
+                     <span className="text-xs font-bold uppercase tracking-wider text-saffron px-3 py-1 bg-saffron/10 rounded-full border border-saffron/20">{feature.tag}</span>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold text-white">{feature.title}</h3>
-                  <p className="text-sm leading-relaxed text-gray-400">{feature.description}</p>
-                  <div className="mt-4 flex items-center gap-1 text-sm font-medium text-gray-500 group-hover:text-white transition-colors">
-                    Get Started <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </div>
+                  <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-gray-400 leading-relaxed font-medium">{feature.description}</p>
                 </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="border-t border-white/8 bg-navy-900/30 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">How It Works</h2>
-            <p className="mt-4 text-gray-400">Three steps to resolve any civic issue</p>
-          </div>
-          <div className="grid gap-8 sm:grid-cols-3">
-            {howItWorks.map((item) => (
-              <div key={item.step} className="relative text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-saffron/25 bg-saffron/10">
-                  <span className="text-2xl font-black text-saffron">{item.step}</span>
-                </div>
-                <h3 className="mb-2 font-bold text-white">{item.title}</h3>
-                <p className="text-sm text-gray-400">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Key benefits */}
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
-          <div className="rounded-2xl border border-saffron/20 bg-gradient-to-br from-saffron/10 to-transparent p-8 sm:p-12">
-            <div className="grid gap-8 sm:grid-cols-2 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-white">
-                  Not just a chatbot —<br />
-                  <span className="gradient-text">An Action Agent</span>
-                </h2>
-                <p className="mt-4 text-gray-400">
-                  Most government chatbots just answer questions. Smart Bharat AI generates complete
-                  action plans, official complaints, and document checklists you can use immediately.
-                </p>
-              </div>
-              <div className="space-y-3">
-                {[
-                  "Gemini AI-powered responses",
-                  "Multilingual (English, Hindi, Telugu)",
-                  "Official complaint generation",
-                  "Real-time tracking IDs",
-                  "Document checklists",
-                  "Scheme recommendations",
-                ].map((benefit) => (
-                  <div key={benefit} className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 shrink-0 text-saffron" />
-                    <span className="text-gray-300">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Target users */}
-      <section className="border-t border-white/8 bg-navy-900/30 px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl text-center">
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <Users className="h-5 w-5 text-saffron" />
-            <span className="text-sm font-medium text-gray-400 uppercase tracking-wider">Built For</span>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["Students", "Working Professionals", "Senior Citizens", "Farmers", "Rural Citizens", "First-time Applicants"].map(
-              (user) => (
-                <span
-                  key={user}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300"
-                >
-                  {user}
-                </span>
               )
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="px-4 py-20 sm:px-6 lg:px-8 text-center">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="text-3xl font-bold text-white">Ready to Get Started?</h2>
-          <p className="mt-4 text-gray-400">
-            Try the Civic Issue Reporter — our most powerful feature. Upload a photo and watch AI work.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/issue-reporter"
-              id="final-cta-issue"
-              className="group flex items-center justify-center gap-2 rounded-xl bg-saffron px-8 py-4 text-base font-bold text-white shadow-lg shadow-saffron/25 transition-all hover:bg-saffron-light hover:-translate-y-0.5"
-            >
-              <Camera className="h-5 w-5" />
-              Report an Issue Now
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/scheme-finder"
-              id="final-cta-schemes"
-              className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-8 py-4 text-base font-bold text-white transition-all hover:bg-white/10 hover:-translate-y-0.5"
-            >
-              <Star className="h-5 w-5" />
-              Find My Schemes
-            </Link>
+            })}
           </div>
         </div>
       </section>

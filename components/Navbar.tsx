@@ -11,6 +11,8 @@ const navLinks = [
   { href: "/document-assistant", label: "Documents" },
   { href: "/issue-reporter", label: "Issue Reporter" },
   { href: "/scheme-finder", label: "Schemes" },
+  { href: "/profile", label: "My Profile" },
+  { href: "/admin", label: "Admin" },
 ];
 
 const languages = [
@@ -25,16 +27,16 @@ export default function Navbar() {
   const [lang, setLang] = useState("en");
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/8 bg-navy-950/90 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-saffron group-hover:scale-110 transition-transform">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-navy-950 group-hover:bg-saffron transition-colors shadow-sm">
             <Zap className="h-5 w-5 text-white" />
           </div>
-          <span className="font-bold text-white text-lg">
+          <span className="font-bold text-navy-950 text-xl tracking-tight">
             Smart<span className="text-saffron">Bharat</span>
-            <span className="text-gray-400 font-normal text-sm ml-1">AI</span>
+            <span className="text-gray-400 font-medium text-sm ml-1">AI</span>
           </span>
         </Link>
 
@@ -44,10 +46,10 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 pathname === link.href
-                  ? "bg-saffron/15 text-saffron border border-saffron/25"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                  ? "bg-gray-100 text-navy-950 shadow-sm"
+                  : "text-gray-500 hover:text-navy-900 hover:bg-gray-50"
               }`}
             >
               {link.label}
@@ -56,22 +58,21 @@ export default function Navbar() {
         </div>
 
         {/* Language selector + Mobile menu */}
-        <div className="flex items-center gap-2">
-          <div className="flex rounded-lg overflow-hidden border border-white/10 text-xs font-medium">
+        <div className="flex items-center gap-3">
+          <div className="flex rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm text-xs font-semibold">
             {languages.map((l) => (
               <button
                 key={l.code}
                 onClick={() => {
                   setLang(l.code);
-                  // Store globally for API calls
                   if (typeof window !== "undefined") {
                     window.localStorage.setItem("sb_lang", l.code);
                   }
                 }}
-                className={`px-2.5 py-1.5 transition-colors ${
+                className={`px-3 py-1.5 transition-colors ${
                   lang === l.code
-                    ? "bg-saffron text-white"
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                    ? "bg-navy-950 text-white"
+                    : "text-gray-500 hover:text-navy-900 hover:bg-gray-50"
                 }`}
                 aria-label={`Switch to ${l.label}`}
               >
@@ -82,7 +83,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-gray-400 hover:text-white"
+            className="md:hidden p-2 text-gray-500 hover:text-navy-950"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
@@ -93,16 +94,16 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden border-t border-white/8 bg-navy-900 px-4 py-3 space-y-1">
+        <div className="md:hidden border-t border-gray-200 bg-white px-4 py-3 space-y-1 shadow-lg">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+              className={`block px-4 py-3 rounded-lg text-sm font-semibold transition-all ${
                 pathname === link.href
-                  ? "bg-saffron/15 text-saffron"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                  ? "bg-gray-100 text-navy-950"
+                  : "text-gray-500 hover:text-navy-900 hover:bg-gray-50"
               }`}
             >
               {link.label}
