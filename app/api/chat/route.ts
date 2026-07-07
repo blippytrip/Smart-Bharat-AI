@@ -177,36 +177,72 @@ ${scheme.description}
 }
 
 function getLocalAnswer(query: string): string | null {
-  const q = query.toLowerCase();
+  const q = query.toLowerCase().trim();
 
+  // 1. Check for passport
+  if (q.includes("passport")) {
+    const s = servicesData["passport"] as any;
+    if (s) return formatServiceResponse(s);
+  }
+
+  // 2. Check for PAN card
+  if (q.includes("pan")) {
+    const s = servicesData["pan_card"] as any;
+    if (s) return formatServiceResponse(s);
+  }
+
+  // 3. Check for driving license
+  if (q.includes("driving") || q.includes("license") || q.includes("dl")) {
+    const s = servicesData["driving_license"] as any;
+    if (s) return formatServiceResponse(s);
+  }
+
+  // 4. Check for scholarships (return compiled list of matching schemes)
+  if (q.includes("scholarship")) {
+    const scholarships = (schemesData as any[]).filter(
+      (s) => s.category.toLowerCase() === "scholarship" || s.id.includes("scholarship")
+    );
+    if (scholarships.length > 0) {
+      let response = `## 🎓 Recommended Government Scholarships\n\nHere are the top scholarships available for students in our database:\n\n`;
+      scholarships.forEach((s) => {
+        response += `### ${s.icon} ${s.name}\n`;
+        response += `${s.description}\n\n`;
+        response += `- **Benefit**: ${s.amount}\n`;
+        response += `- **Deadline**: ${s.deadline}\n`;
+        response += `- **Apply Link**: [Official Portal](${s.applyLink})\n\n`;
+      });
+      return response;
+    }
+  }
+
+  // 5. Check for Ayushman Bharat
+  if (q.includes("ayushman") || q.includes("pmjay") || q.includes("health card") || q.includes("pm-jay")) {
+    const scheme = (schemesData as any[]).find((s) => s.id === "ayushman_bharat");
+    if (scheme) return formatSchemeResponse(scheme);
+  }
+
+  // 6. Check for PM-KISAN
+  if (q.includes("kisan") || q.includes("farmer") || q.includes("pmkisan") || q.includes("pm-kisan")) {
+    const scheme = (schemesData as any[]).find((s) => s.id === "pm_kisan");
+    if (scheme) return formatSchemeResponse(scheme);
+  }
+
+  // 7. General search fallbacks:
   // Search in servicesData
   for (const [key, service] of Object.entries(servicesData)) {
     const s = service as any;
-    if (
-      q.includes(s.name.toLowerCase()) ||
-      q.includes(key.replace(/_/g, " ")) ||
-      (key === "driving_license" && (q.includes("driving") || q.includes("license") || q.includes("dl"))) ||
-      (key === "voter_id" && (q.includes("voter") || q.includes("epic"))) ||
-      (key === "pan_card" && q.includes("pan")) ||
-      (key === "passport" && q.includes("passport"))
-    ) {
+    const nameLower = s.name.toLowerCase();
+    const keyString = key.replace(/_/g, " ");
+    if (q.includes(nameLower) || q.includes(keyString)) {
       return formatServiceResponse(s);
     }
   }
 
   // Search in schemesData
   for (const scheme of schemesData as any[]) {
-    const name = scheme.name.toLowerCase();
-    const id = scheme.id.toLowerCase();
-    if (
-      q.includes(name) ||
-      q.includes(id.replace(/_/g, " ")) ||
-      (scheme.id === "pm_kisan" && q.includes("kisan")) ||
-      (scheme.id === "ayushman_bharat" && (q.includes("ayushman") || q.includes("pmjay"))) ||
-      (scheme.id === "ujjwala_yojana" && (q.includes("ujjwala") || q.includes("lpg"))) ||
-      (scheme.id === "mudra_loan" && (q.includes("mudra") || q.includes("loan"))) ||
-      (scheme.id === "sukanya_samridhi" && (q.includes("sukanya") || q.includes("samridhi")))
-    ) {
+    const nameLower = scheme.name.toLowerCase();
+    const idString = scheme.id.replace(/_/g, " ");
+    if (q.includes(nameLower) || q.includes(idString)) {
       return formatSchemeResponse(scheme);
     }
   }
