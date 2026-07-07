@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getTextModel, isDemoMode } from "@/lib/gemini";
+import { getTextModel, isDemoMode, cleanErrorMessage } from "@/lib/gemini";
 import servicesData from "@/data/services.json";
 import schemesData from "@/data/schemes.json";
 
@@ -205,7 +205,7 @@ ${context ? `KNOWLEDGE BASE CONTEXT:\n${context}` : ""}`;
     return NextResponse.json({
       response: getMockResponse("default"),
       demoMode: true,
-      error: error instanceof Error ? error.message : "AI service temporarily unavailable",
+      error: cleanErrorMessage(error),
     });
   }
 }

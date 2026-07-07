@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getVisionModel, isDemoMode, generateTrackingId } from "@/lib/gemini";
+import { getVisionModel, isDemoMode, generateTrackingId, cleanErrorMessage } from "@/lib/gemini";
 import departmentsData from "@/data/departments.json";
 
 type DepartmentKey = keyof typeof departmentsData;
@@ -54,11 +54,15 @@ Tracking ID: ${trackingId}`,
 }
 
 export async function POST(req: NextRequest) {
+  let description = "";
+  let location = "";
+  let imageFile: File | null = null;
+
   try {
     const formData = await req.formData();
-    const imageFile = formData.get("image") as File | null;
-    const description = (formData.get("description") as string) || "";
-    const location = (formData.get("location") as string) || "";
+    imageFile = formData.get("image") as File | null;
+    description = (formData.get("description") as string) || "";
+    location = (formData.get("location") as string) || "";
 
     if (isDemoMode()) {
       // Simulate a delay for realism
@@ -164,12 +168,10 @@ Tracking ID: ${trackingId}`;
     });
   } catch (error) {
     console.error("Issue API error:", error);
-    const formData = await req.formData().catch(() => new FormData());
-    const description = (formData.get("description") as string) || "";
     return NextResponse.json({
       ...getMockAnalysis(description),
       demoMode: true,
-      error: error instanceof Error ? error.message : "AI service error",
+      error: cleanErrorMessage(error),
     });
   }
 }
