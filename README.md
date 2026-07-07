@@ -128,6 +128,34 @@ All data is local JSON — no external database required:
 - `schemes.json` — 15 schemes (PM-KISAN, NSP, Ayushman, Mudra, PMAY, etc.)
 - `departments.json` — 10 civic issue types with responsible departments
 
+## 🏆 Problem Statement Alignment
+
+This project directly solves the hackathon problem statement: **"Build a GenAI-powered civic platform that helps citizens access government services, report public issues, and receive personalized assistance."**
+
+- **GenAI-powered civic platform**: Built natively on top of Google Gemini 2.0 Flash to power 100% of interactions.
+- **Access government services**: The Document Assistant feature generates checklists and prerequisites for major government services (Passport, DL, PAN, etc).
+- **Report public issues**: The Civic Issue Reporter uses Gemini Vision to extract details from user photos of civic problems and auto-routes them.
+- **Personalized assistance**: The AI Companion dynamically customizes answers in real-time based on the user's demographic inputs.
+
+---
+
+## 🔒 Security & Code Quality
+
+- Strict TypeScript implementation across all components.
+- Secure environment variable handling (never exposed to client).
+- Security headers implemented in `next.config.js` (CSP, strict-origin, no-sniff).
+- Error boundaries and fallback UI deployed for API quota limits.
+
+---
+
+## ♿ Accessibility & Efficiency
+
+- Fully semantic HTML structure (`<main>`, `<section>`, `<nav>`, `<header>`).
+- ARIA-labels implemented across dynamic elements.
+- Optimized bundle sizes using Next.js Turbopack and React Server Components.
+- 100% mobile responsive with dynamic contrast adjustments.
+- Automated tests using Jest and React Testing Library.
+
 ---
 
 ## 🎨 Design

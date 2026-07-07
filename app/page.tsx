@@ -47,23 +47,23 @@ const features = [
 
 export default function HomePage() {
   return (
-    <div className="bg-offwhite text-nearblack overflow-hidden selection:bg-saffron selection:text-white">
+    <main className="bg-offwhite text-nearblack overflow-hidden selection:bg-saffron selection:text-white" aria-label="Smart Bharat AI Homepage">
       {/* --- HERO SECTION --- */}
       <section className="relative px-4 pt-24 pb-32 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
         {/* Subtle mesh background element */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-saffron/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none" aria-hidden="true" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-saffron/10 blur-[120px] rounded-full pointer-events-none" aria-hidden="true" />
 
         <div className="relative z-10 fade-in-1">
-          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-semibold text-navy-950 shadow-sm mb-8">
-            <Zap className="h-4 w-4 text-saffron fill-saffron" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-sm font-semibold text-navy-950 shadow-sm mb-8" role="status" aria-label="Powered by Google Gemini AI">
+            <Zap className="h-4 w-4 text-saffron fill-saffron" aria-hidden="true" />
             <span>Powered by Google Gemini AI</span>
-            <span className="text-gray-300 mx-1">|</span>
+            <span className="text-gray-300 mx-1" aria-hidden="true">|</span>
             <span className="text-gray-500">Built for 🇮🇳</span>
           </div>
 
           <h1 className="text-5xl font-black tracking-tight text-navy-950 sm:text-7xl mb-6 max-w-4xl mx-auto leading-[1.1]">
-            Your AI Civic Companion <br className="hidden md:block" />
+            Your AI Civic Companion <br className="hidden md:block" aria-hidden="true" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-saffron to-saffron-light">for Modern India</span>
           </h1>
 
@@ -74,24 +74,26 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/issue-reporter"
+              aria-label="Navigate to Issue Reporter"
               className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-navy-950 px-8 py-4 text-base font-bold text-white shadow-xl shadow-navy-950/20 transition-all hover:bg-navy-900 hover:-translate-y-1"
             >
-              <Camera className="h-5 w-5 text-saffron" />
+              <Camera className="h-5 w-5 text-saffron" aria-hidden="true" />
               Report Civic Issue
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </Link>
             <Link
               href="/companion"
+              aria-label="Navigate to AI Companion"
               className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white border border-gray-200 px-8 py-4 text-base font-bold text-navy-950 shadow-sm transition-all hover:border-gray-300 hover:bg-gray-50 hover:-translate-y-1"
             >
-              <MessageSquare className="h-5 w-5 text-gray-400 group-hover:text-navy-950 transition-colors" />
+              <MessageSquare className="h-5 w-5 text-gray-400 group-hover:text-navy-950 transition-colors" aria-hidden="true" />
               Ask AI Companion
             </Link>
           </div>
         </div>
 
         {/* Hero Dashboard Preview (Mockup) */}
-        <div className="relative mt-20 w-full max-w-5xl fade-in-3">
+        <div className="relative mt-20 w-full max-w-5xl fade-in-3" aria-hidden="true">
           <div className="absolute inset-0 bg-gradient-to-t from-offwhite via-transparent to-transparent z-10 rounded-2xl" />
           <div className="rounded-2xl border border-gray-200 bg-white/50 backdrop-blur-sm p-2 shadow-2xl shadow-navy-950/5">
             <div className="rounded-xl overflow-hidden border border-gray-100 bg-white shadow-sm flex flex-col md:flex-row">
@@ -135,7 +137,7 @@ export default function HomePage() {
       </section>
 
       {/* --- STATS / TRUST SECTION --- */}
-      <section className="border-y border-gray-200 bg-white py-12">
+      <section className="border-y border-gray-200 bg-white py-12" aria-label="Platform Statistics">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100">
             <div className="text-center px-4">
@@ -152,7 +154,7 @@ export default function HomePage() {
             </div>
             <div className="text-center px-4">
               <div className="text-3xl font-black text-navy-950 flex items-center justify-center gap-1">
-                <Globe className="w-6 h-6 text-saffron" /> 3
+                <Globe className="w-6 h-6 text-saffron" aria-hidden="true" /> 3
               </div>
               <div className="mt-1 text-sm font-semibold text-gray-500 uppercase tracking-wide">Languages</div>
             </div>
@@ -161,13 +163,13 @@ export default function HomePage() {
       </section>
 
       {/* --- FEATURE SHOWCASE (ALTERNATING) --- */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-24 overflow-hidden" aria-label="Key Features">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
           
           {/* Feature 1: Issue Reporter */}
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 space-y-6">
-              <div className="inline-flex items-center gap-2 text-saffron font-bold text-sm tracking-widest uppercase">
+              <div className="inline-flex items-center gap-2 text-saffron font-bold text-sm tracking-widest uppercase" aria-hidden="true">
                 <Camera className="w-4 h-4" /> Issue Reporter
               </div>
               <h2 className="text-4xl sm:text-5xl font-black text-navy-950 leading-tight">
@@ -179,13 +181,13 @@ export default function HomePage() {
               <ul className="space-y-3 pt-4">
                 {['Automatic category detection via AI Vision', 'Location metadata extraction', 'Ready-to-email official complaint drafts'].map(item => (
                   <li key={item} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-0.5" aria-hidden="true" />
                     <span className="text-gray-700 font-medium">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="flex-1 relative">
+            <div className="flex-1 relative" aria-hidden="true">
               <div className="absolute inset-0 bg-saffron/10 blur-3xl rounded-full" />
               <div className="relative border border-gray-200 bg-white rounded-2xl shadow-xl overflow-hidden flex items-center justify-center aspect-square md:aspect-video lg:aspect-square">
                  <div className="w-3/4 space-y-4">
@@ -208,7 +210,7 @@ export default function HomePage() {
           {/* Feature 2: Document Assistant */}
           <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
             <div className="flex-1 space-y-6">
-              <div className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm tracking-widest uppercase">
+              <div className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm tracking-widest uppercase" aria-hidden="true">
                 <FileText className="w-4 h-4" /> Document Assistant
               </div>
               <h2 className="text-4xl sm:text-5xl font-black text-navy-950 leading-tight">
@@ -217,11 +219,11 @@ export default function HomePage() {
               <p className="text-lg text-gray-600 leading-relaxed">
                 Applying for a passport or PAN card? Upload your documents securely. Our AI acts as a digital notary, verifying if you have the correct paperwork before you even step foot in a government office.
               </p>
-              <Link href="/document-assistant" className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-700 transition-colors pt-2">
-                Try Document Assistant <ArrowRight className="w-4 h-4" />
+              <Link href="/document-assistant" aria-label="Try the Document Assistant feature" className="inline-flex items-center gap-2 font-bold text-blue-600 hover:text-blue-700 transition-colors pt-2">
+                Try Document Assistant <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
-            <div className="flex-1 relative w-full">
+            <div className="flex-1 relative w-full" aria-hidden="true">
               <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full" />
               <div className="relative border border-gray-200 bg-white rounded-2xl shadow-xl overflow-hidden flex items-center justify-center p-8 aspect-square md:aspect-video lg:aspect-square">
                  <div className="w-full space-y-3">
@@ -243,7 +245,7 @@ export default function HomePage() {
       </section>
 
       {/* --- BENTO GRID SHOWCASE --- */}
-      <section className="py-24 bg-navy-950 text-white rounded-t-[3rem]">
+      <section className="py-24 bg-navy-950 text-white rounded-t-[3rem]" aria-label="All Services">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl sm:text-5xl font-black mb-6">A complete civic ecosystem.</h2>
@@ -257,11 +259,12 @@ export default function HomePage() {
                 <Link
                   href={feature.href}
                   key={idx}
+                  aria-label={`Learn more about ${feature.title}`}
                   className={`group relative border border-white/10 bg-white/5 rounded-3xl p-8 hover:bg-white/10 transition-colors ${idx === 0 ? 'md:col-span-2' : ''}`}
                 >
                   <div className="flex justify-between items-start mb-16">
                      <div className="h-12 w-12 rounded-xl bg-white/10 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-white" />
+                        <Icon className="w-6 h-6 text-white" aria-hidden="true" />
                      </div>
                      <span className="text-xs font-bold uppercase tracking-wider text-saffron px-3 py-1 bg-saffron/10 rounded-full border border-saffron/20">{feature.tag}</span>
                   </div>
@@ -273,6 +276,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
