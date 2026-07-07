@@ -11,6 +11,8 @@ import {
   BadgeCheck,
   ChevronRight,
   TrendingUp,
+  CheckCircle,
+  AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";
 
