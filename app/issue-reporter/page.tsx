@@ -128,7 +128,7 @@ export default function IssueReporterPage() {
         demoMode: true,
       });
       setDemoMode(true);
-      setBannerMessage("Request failed. Using demo mock response.");
+      setBannerMessage("Running in Demo Mode — Gemini API Limit Exhausted");
     } finally {
       setLoading(false);
     }

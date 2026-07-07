@@ -113,7 +113,7 @@ export default function SchemeFinderPage() {
       setSchemes([]);
       setAiSummary("Unable to load schemes. Please try again.");
       setDemoMode(true);
-      setBannerMessage("Request failed. Using demo mock response.");
+      setBannerMessage("Running in Demo Mode — Gemini API Limit Exhausted");
     } finally {
       setLoading(false);
     }

@@ -110,7 +110,7 @@ I'm your AI Civic Action Agent — here to help you navigate India's government 
         },
       ]);
       setDemoMode(true);
-      setBannerMessage("Request failed. Using demo mock response.");
+      setBannerMessage("Running in Demo Mode — Gemini API Limit Exhausted");
     } finally {
       setLoading(false);
     }
