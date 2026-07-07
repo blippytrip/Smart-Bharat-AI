@@ -92,48 +92,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hero Dashboard Preview (Mockup) */}
-        <div className="relative mt-20 w-full max-w-5xl fade-in-3" aria-hidden="true">
-          <div className="absolute inset-0 bg-gradient-to-t from-offwhite via-transparent to-transparent z-10 rounded-2xl" />
-          <div className="rounded-2xl border border-gray-200 bg-white/50 backdrop-blur-sm p-2 shadow-2xl shadow-navy-950/5">
-            <div className="rounded-xl overflow-hidden border border-gray-100 bg-white shadow-sm flex flex-col md:flex-row">
-              {/* Sidebar Mock */}
-              <div className="w-full md:w-64 border-r border-gray-100 bg-gray-50/50 p-6 hidden md:flex flex-col gap-4">
-                <div className="h-8 w-24 bg-gray-200 rounded-md mb-4" />
-                <div className="h-4 w-full bg-gray-200 rounded-sm" />
-                <div className="h-4 w-3/4 bg-gray-200 rounded-sm" />
-                <div className="h-4 w-5/6 bg-gray-200 rounded-sm" />
-                <div className="mt-8 h-32 w-full border border-gray-200 rounded-lg bg-white shadow-sm p-4 flex flex-col justify-between">
-                  <div className="h-3 w-16 bg-saffron/30 rounded-sm" />
-                  <div className="h-8 w-8 bg-saffron/10 rounded-full flex items-center justify-center"><Activity className="w-4 h-4 text-saffron" /></div>
-                </div>
-              </div>
-              {/* Main Content Mock */}
-              <div className="flex-1 p-6 sm:p-10">
-                <div className="flex items-center justify-between mb-8">
-                  <div>
-                    <div className="h-6 w-48 bg-navy-950 rounded-md mb-2" />
-                    <div className="h-4 w-64 bg-gray-200 rounded-sm" />
-                  </div>
-                  <div className="hidden sm:flex h-10 w-10 bg-gray-100 rounded-full" />
-                </div>
-                {/* Bento layout inside the mockup */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="h-48 border border-gray-100 rounded-xl bg-gray-50 p-6">
-                     <div className="h-10 w-10 rounded-lg bg-blue-100 mb-4 flex items-center justify-center"><FileSearch className="w-5 h-5 text-blue-600" /></div>
-                     <div className="h-4 w-1/2 bg-gray-300 rounded-sm mb-2" />
-                     <div className="h-3 w-full bg-gray-200 rounded-sm" />
-                  </div>
-                  <div className="h-48 border border-gray-100 rounded-xl bg-gray-50 p-6">
-                     <div className="h-10 w-10 rounded-lg bg-green-100 mb-4 flex items-center justify-center"><Shield className="w-5 h-5 text-green-600" /></div>
-                     <div className="h-4 w-1/2 bg-gray-300 rounded-sm mb-2" />
-                     <div className="h-3 w-full bg-gray-200 rounded-sm" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Mockup removed as requested */}
       </section>
 
       {/* --- STATS / TRUST SECTION --- */}
