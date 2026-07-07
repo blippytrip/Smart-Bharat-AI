@@ -169,6 +169,7 @@ Tracking ID: ${trackingId}`;
     return NextResponse.json({
       ...getMockAnalysis(description),
       demoMode: true,
+      error: error instanceof Error ? error.message : "AI service error",
     });
   }
 }

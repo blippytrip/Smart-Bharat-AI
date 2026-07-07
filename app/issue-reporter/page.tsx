@@ -57,6 +57,7 @@ export default function IssueReporterPage() {
   const [copied, setCopied] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [demoMode, setDemoMode] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState<string | null>(null);
 
   const handleImageDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -97,9 +98,14 @@ export default function IssueReporterPage() {
       formData.append("location", location);
 
       const res = await fetch("/api/issue", { method: "POST", body: formData });
-      const data: IssueResult = await res.json();
+      const data: IssueResult & { error?: string } = await res.json();
       setResult(data);
       setDemoMode(data.demoMode);
+      if (data.error) {
+        setBannerMessage(`Gemini API Error: ${data.error}. Using demo mock response.`);
+      } else {
+        setBannerMessage(null);
+      }
 
       // Add to complaint tracker
       setComplaints((prev) => [
@@ -121,6 +127,8 @@ export default function IssueReporterPage() {
         submittedAt: new Date().toISOString(),
         demoMode: true,
       });
+      setDemoMode(true);
+      setBannerMessage("Request failed. Using demo mock response.");
     } finally {
       setLoading(false);
     }
@@ -144,7 +152,7 @@ export default function IssueReporterPage() {
 
   return (
     <div className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
-      <DemoBanner show={demoMode} />
+      <DemoBanner show={demoMode} message={bannerMessage || undefined} />
 
       <div className="mx-auto max-w-5xl">
         {/* Header */}

@@ -50,6 +50,7 @@ I'm your AI Civic Action Agent — here to help you navigate India's government 
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [demoMode, setDemoMode] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState<string | null>(null);
   const [history, setHistory] = useState<{ role: string; content: string }[]>([]);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -89,6 +90,11 @@ I'm your AI Civic Action Agent — here to help you navigate India's government 
       };
       setMessages((prev) => [...prev, aiMsg]);
       setDemoMode(data.demoMode);
+      if (data.error) {
+        setBannerMessage(`Gemini API Error: ${data.error}. Using demo mock response.`);
+      } else {
+        setBannerMessage(null);
+      }
       setHistory((prev) => [
         ...prev,
         { role: "user", content: userMessage },
@@ -103,6 +109,8 @@ I'm your AI Civic Action Agent — here to help you navigate India's government 
           timestamp: new Date(),
         },
       ]);
+      setDemoMode(true);
+      setBannerMessage("Request failed. Using demo mock response.");
     } finally {
       setLoading(false);
     }
@@ -127,7 +135,7 @@ I'm your AI Civic Action Agent — here to help you navigate India's government 
 
   return (
     <div className="flex flex-col h-[calc(100vh-64px)]">
-      <DemoBanner show={demoMode} />
+      <DemoBanner show={demoMode} message={bannerMessage || undefined} />
 
       {/* Header */}
       <div className="border-b border-white/8 bg-navy-900/50 px-4 py-4 sm:px-6">

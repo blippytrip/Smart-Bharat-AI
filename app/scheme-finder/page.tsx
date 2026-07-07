@@ -75,6 +75,7 @@ export default function SchemeFinderPage() {
   const [schemes, setSchemes] = useState<Scheme[] | null>(null);
   const [aiSummary, setAiSummary] = useState("");
   const [demoMode, setDemoMode] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState<string | null>(null);
 
   const getLang = () => {
     if (typeof window !== "undefined") return localStorage.getItem("sb_lang") || "en";
@@ -103,9 +104,16 @@ export default function SchemeFinderPage() {
       setSchemes(data.schemes || []);
       setAiSummary(data.aiSummary || "");
       setDemoMode(data.demoMode);
+      if (data.error) {
+        setBannerMessage(`Gemini API Error: ${data.error}. Using demo mock response.`);
+      } else {
+        setBannerMessage(null);
+      }
     } catch {
       setSchemes([]);
       setAiSummary("Unable to load schemes. Please try again.");
+      setDemoMode(true);
+      setBannerMessage("Request failed. Using demo mock response.");
     } finally {
       setLoading(false);
     }
@@ -113,7 +121,7 @@ export default function SchemeFinderPage() {
 
   return (
     <div className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
-      <DemoBanner show={demoMode} />
+      <DemoBanner show={demoMode} message={bannerMessage || undefined} />
 
       <div className="mx-auto max-w-5xl">
         {/* Header */}

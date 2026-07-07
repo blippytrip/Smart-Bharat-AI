@@ -205,7 +205,7 @@ ${context ? `KNOWLEDGE BASE CONTEXT:\n${context}` : ""}`;
     return NextResponse.json({
       response: getMockResponse("default"),
       demoMode: true,
-      error: "AI service temporarily unavailable",
+      error: error instanceof Error ? error.message : "AI service temporarily unavailable",
     });
   }
 }
