@@ -176,8 +176,103 @@ ${scheme.description}
 📎 **How to Apply**: [Official Portal](${scheme.applyLink})`;
 }
 
-function getLocalAnswer(query: string): string | null {
+const mockResponsesHi: Record<string, string> = {
+  default: `## मैं आपकी कैसे मदद कर सकता हूँ 🇮🇳
+
+मैं स्मार्ट भारत एआई हूँ। मैं निम्नलिखित में मदद कर सकता हूँ:
+
+**सरकारी सेवाएँ:**
+- 🛂 पासपोर्ट आवेदन
+- 🚗 ड्राइविंग लाइसेंस
+- 💳 पैन कार्ड
+
+**नागरिक समस्याएँ:**
+- गड्ढे, कचरा, टूटी स्ट्रीटलाइट की रिपोर्ट करें
+
+कृपया मुझे कुछ विशिष्ट पूछें! जैसे: *"मैं पासपोर्ट के लिए आवेदन कैसे करूँ?"*`,
+  passport: `## पासपोर्ट के लिए आवेदन कैसे करें 🛂
+
+**आवश्यक दस्तावेज़:**
+1. आधार कार्ड
+2. पैन कार्ड
+3. जन्म प्रमाण पत्र
+4. पता प्रमाण
+5. 2 फोटो
+
+**समय:** 7-10 दिन (तत्काल) | 30-45 दिन (सामान्य)
+
+**शुल्क:** ₹1,500 (सामान्य) | ₹2,000 (तत्काल)
+📎 **लिंक:** passportindia.gov.in`,
+  driving: `## ड्राइविंग लाइसेंस कैसे प्राप्त करें 🚗
+
+**चरण 1: लर्निंग लाइसेंस**
+1. parivahan.gov.in पर जाएं
+2. फॉर्म 2 भरें
+
+**शुल्क:** ₹150–200
+📎 **लिंक:** parivahan.gov.in`,
+  pan: `## पैन कार्ड के लिए आवेदन कैसे करें 💳
+
+**विकल्प 1: तत्काल ई-पैन (अनुशंसित)**
+- incometaxindia.gov.in पर जाएं
+- आधार आधारित तत्काल पैन का उपयोग करें (मुफ़्त)
+
+📎 **लिंक:** onlineservices.nsdl.com`
+};
+
+const mockResponsesTe: Record<string, string> = {
+  default: `## నేను మీకు ఎలా సహాయపడగలను 🇮🇳
+
+నేను స్మార్ట్ భారత్ AI. నేను వీటిలో సహాయపడగలను:
+
+**ప్రభుత్వ సేవలు:**
+- 🛂 పాస్‌పోర్ట్ దరఖాస్తు
+- 🚗 డ్రైవింగ్ లైసెన్స్
+- 💳 పాన్ కార్డ్
+
+దయచేసి ఏదైనా నిర్దిష్టంగా అడగండి! ఉదాహరణకు: *"నేను పాస్‌పోర్ట్ కోసం ఎలా దరఖాస్తు చేయాలి?"*`,
+  passport: `## పాస్‌పోర్ట్ కోసం ఎలా దరఖాస్తు చేయాలి 🛂
+
+**అవసరమైన పత్రాలు:**
+1. ఆధార్ కార్డ్
+2. పాన్ కార్డ్
+3. జనన ధృవీకరణ పత్రం
+
+**సమయం:** 7-10 రోజులు (తత్కాల్)
+**రుసుము:** ₹1,500 (సాధారణ)
+📎 **లింక్:** passportindia.gov.in`,
+  driving: `## డ్రైవింగ్ లైసెన్స్ ఎలా పొందాలి 🚗
+
+**దశ 1: లెర్నింగ్ లైసెన్స్**
+1. parivahan.gov.in ని సందర్శించండి
+2. ఫారమ్ 2 నింపండి
+
+📎 **లింక్:** parivahan.gov.in`,
+  pan: `## పాన్ కార్డ్ కోసం ఎలా దరఖాస్తు చేయాలి 💳
+
+**ఎంపిక 1: తక్షణ ఇ-పాన్**
+- incometaxindia.gov.in ని సందర్శించండి
+
+📎 **లింక్:** onlineservices.nsdl.com`
+};
+
+function getLocalAnswer(query: string, lang: string): string | null {
   const q = query.toLowerCase().trim();
+
+  // If Hindi or Telugu, we bypass the English JSON for the demo
+  if (lang === "hi") {
+    if (q.includes("passport") || q.includes("पासपोर्ट")) return mockResponsesHi.passport;
+    if (q.includes("pan") || q.includes("पैन")) return mockResponsesHi.pan;
+    if (q.includes("driving") || q.includes("dl") || q.includes("लाइसेंस")) return mockResponsesHi.driving;
+    return mockResponsesHi.default;
+  }
+  
+  if (lang === "te") {
+    if (q.includes("passport") || q.includes("పాస్‌పోర్ట్")) return mockResponsesTe.passport;
+    if (q.includes("pan") || q.includes("పాన్")) return mockResponsesTe.pan;
+    if (q.includes("driving") || q.includes("dl") || q.includes("లైసెన్స్")) return mockResponsesTe.driving;
+    return mockResponsesTe.default;
+  }
 
   // 1. Check for passport
   if (q.includes("passport")) {
@@ -250,11 +345,19 @@ function getLocalAnswer(query: string): string | null {
   return null;
 }
 
-function getMockResponse(query: string): string {
-  const local = getLocalAnswer(query);
+function getMockResponse(query: string, lang: string = "en"): string {
+  const local = getLocalAnswer(query, lang);
   if (local) return local;
 
   const q = query.toLowerCase();
+  
+  if (lang === "hi") {
+    return mockResponsesHi.default;
+  }
+  if (lang === "te") {
+    return mockResponsesTe.default;
+  }
+
   if (q.includes("passport")) return mockResponses.passport;
   if (q.includes("driving") || q.includes("dl") || q.includes("license")) return mockResponses.driving;
   if (q.includes("pan")) return mockResponses.pan;
@@ -263,10 +366,12 @@ function getMockResponse(query: string): string {
 
 export async function POST(req: NextRequest) {
   let message = "";
+  let lang = "en";
   try {
     const body = await req.json();
     message = body.message;
-    const { history, lang } = body;
+    lang = body.lang || "en";
+    const { history } = body;
 
     if (!message?.trim()) {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
@@ -274,7 +379,7 @@ export async function POST(req: NextRequest) {
 
     if (isDemoMode()) {
       return NextResponse.json({
-        response: getMockResponse(message),
+        response: getMockResponse(message, lang),
         demoMode: true,
       });
     }
@@ -323,7 +428,7 @@ ${context ? `KNOWLEDGE BASE CONTEXT:\n${context}` : ""}`;
   } catch (error) {
     console.error("Chat API error:", error);
     return NextResponse.json({
-      response: getMockResponse(message),
+      response: getMockResponse(message, lang),
       demoMode: true,
       error: cleanErrorMessage(error),
     });
